@@ -9,9 +9,11 @@ const defaultRequiredErrorMessage = "Þessi reitur er nauðsynlegur";
 
 const getError: { [key in TextFieldType]: (value: string) => string } = {
   text: () => "",
-  email: (value: string) => emailRegex.test(value) ? "" : "Þetta er ekki gilt netfang",
-  phone: (value: string) => phoneRegex.test(digits(value)) ? "" : "Símanúmer verður að vera 7 tölustafir",
-  ssn: (value: string) => ssnRegex.test(digits(value)) ? "" : "Kennitala verður að vera 10 tölustafir",
+  email: (value: string) => (emailRegex.test(value) ? "" : "Þetta er ekki gilt netfang"),
+  phone: (value: string) =>
+    phoneRegex.test(digits(value)) ? "" : "Símanúmer verður að vera 7 tölustafir",
+  ssn: (value: string) =>
+    ssnRegex.test(digits(value)) ? "" : "Kennitala verður að vera 10 tölustafir",
 };
 
 const requiredErrorMessages: Partial<{ [key in TextFieldType]: string }> = {
@@ -28,7 +30,7 @@ interface Options {
  * @returns empty string if no error
  */
 export const getFieldError = (type: TextFieldType, value: string, opts: Options = {}): string => {
-  const required = opts.required ||true;
+  const required = opts.required || true;
 
   if (required && !value) {
     return requiredErrorMessages[type] || defaultRequiredErrorMessage;
@@ -45,3 +47,5 @@ export const getFieldError = (type: TextFieldType, value: string, opts: Options 
   return getError[type](value);
 };
 
+export const isValueValid = (type: TextFieldType, value: string, opts: Options = {}): boolean =>
+  !getFieldError(type, value, opts);
