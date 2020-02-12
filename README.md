@@ -1,5 +1,3 @@
-# Drop and Sign
-
 ## Development
 
 Install dependencies with `npm i`.
@@ -37,7 +35,3 @@ npm i
 npm run build
 npm start
 ```
-
-## Instructions on how to add Announcements banner in case of incident with Taktikal, Third party software or planned mainenance +
-
-https://docs.google.com/document/d/1pSpn2Iv983cugDSliJtNtfx8IJ2FDMye_iTkZwlJ2ZM/edit#
