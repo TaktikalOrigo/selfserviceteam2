@@ -1,17 +1,7 @@
+import React from "react";
 import { StepManager } from "~/client/components/stepManager/StepManager";
 import { maternityLeaveSteps } from "~/client/maternityLeave/maternityLeaveSteps";
-import { compileStaticStylesheet } from "~/client/util/compileStaticStylesheet";
-
-const s = compileStaticStylesheet(({ css }) => ({
-  container: css`
-    padding: 32px;
-    min-height: 100vh;
-  `,
-}));
-
-const Layout: React.FC = props => {
-  return <div className={s("container")}>{props.children}</div>;
-};
+import { MaternityLeaveLayout } from "~/client/maternityLeave/MaternityLeaveLayout";
 
 export default () => {
   return (
@@ -32,7 +22,7 @@ export default () => {
         hasEmployeeAccepted: false,
         hasGovernmentAccepted: false,
       }}
-      layoutComponent={Layout}
+      layoutComponent={MaternityLeaveLayout}
       steps={maternityLeaveSteps}
     />
   );
