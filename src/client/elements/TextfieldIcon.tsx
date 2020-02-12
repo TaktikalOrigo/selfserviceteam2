@@ -4,7 +4,7 @@ import { LoadingIcon } from "~/client/icon/LoadingIcon";
 import { ErrorIcon } from "~/client/icon/ErrorIcon";
 import { SuccessIcon } from "~/client/icon/SuccessIcon";
 import { compileStaticStylesheet } from "~/client/util/compileStaticStylesheet";
-import styles from "./TextFieldIcon.styles";
+import styles from "./TextfieldIcon.styles";
 
 const s = compileStaticStylesheet(styles);
 

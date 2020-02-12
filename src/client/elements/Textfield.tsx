@@ -8,7 +8,7 @@ import {
   removeMarginProps,
 } from "~/client/util/createMarginClassName";
 import { compileStaticStylesheet } from "~/client/util/compileStaticStylesheet";
-import styles from "./TextField.styles";
+import styles from "./Textfield.styles";
 import { getFieldError } from "~/common/util/form/getFieldError";
 import TextFieldIcon from "~/client/elements/TextfieldIcon";
 import { TextFieldInput } from "~/client/elements/TextfieldInput";

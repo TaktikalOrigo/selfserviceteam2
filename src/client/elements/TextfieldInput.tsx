@@ -2,7 +2,7 @@ import React from "react";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { useStylesheet } from "@taktikal/stylesheets";
 import Input from "~/client/elements/Input";
-import styles from "./TextFieldInput.styles";
+import styles from "./TextfieldInput.styles";
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   mask?: Array<string | RegExp>;
