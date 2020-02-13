@@ -96,6 +96,10 @@ export const MaternityLeaveTimePeriods: React.FC<MaternityLeaveProps> = props =>
       return undefined;
     }
 
+    if (!timePeriods[index + 1].startDate) {
+      return undefined;
+    }
+
     return subDays(timePeriods[index + 1].startDate!, 1);
   };
 
@@ -176,7 +180,7 @@ export const MaternityLeaveTimePeriods: React.FC<MaternityLeaveProps> = props =>
         const hasBothDates = period.startDate && period.endDate;
         const daysInRange = getDaysInRange(period);
         return (
-          <div className={s("timePeriod")} key={i}>
+          <div key={i} className={s("timePeriod")} style={{ zIndex: timePeriods.length - i }}>
             <div className={s("timePeriod__upper")}>
               <div className={s("timePeriod__section")}>
                 <div>Start:</div>

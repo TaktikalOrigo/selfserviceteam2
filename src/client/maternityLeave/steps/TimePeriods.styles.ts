@@ -3,6 +3,7 @@ import { cssVariables } from "~/cssVariables";
 
 export default ({ css }: StyleParams) => ({
   timePeriod: css`
+    position: relative;
     margin-bottom: 16px;
   `,
 
