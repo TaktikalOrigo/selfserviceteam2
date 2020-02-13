@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
-import { addDays, subDays, differenceInDays } from "date-fns";
+import { addDays, addMonths, subDays, differenceInDays, startOfDay, compareAsc } from "date-fns";
 import { MaternityLeaveProps } from "~/client/maternityLeave/maternityLeaveSteps";
 import { Button } from "~/client/elements/Button";
 import { Title } from "~/client/elements/Title";
@@ -56,7 +56,7 @@ const getDaysInRange = (period: TimePeriod): number => {
 export const MaternityLeaveTimePeriods: React.FC<MaternityLeaveProps> = props => {
   const { timePeriods } = props.fields;
 
-  const [showSubmitErrorMessage, setShowSubmitErrorMessage] = useState(false);
+  const [showTotalMustBeMonthErrorMessage, setShowTotalMustBeMonthErrorMessage] = useState(false);
 
   // 3 months for each parent, 3 months shared between them. If the other parent
   // has taken from the shared time then that will reduce the available months.
@@ -110,9 +110,28 @@ export const MaternityLeaveTimePeriods: React.FC<MaternityLeaveProps> = props =>
   const daysUsedAreInMonths = daysUsed % DAYS_PER_MONTH === 0;
   const usageIsAboveMaximum = daysUsed > daysAvailable;
 
+  const acceptableDateEnd = addMonths(props.fields.expectedDateOfBirth!, 24);
+  let timePeriodsExtendBeyondAcceptableRange = false;
+
+  for (let i = timePeriods.length - 1; i >= 0; i -= 1) {
+    const date = timePeriods[i].endDate || timePeriods[i].startDate;
+
+    if (!date) {
+      continue;
+    }
+
+    if (compareAsc(startOfDay(date), startOfDay(acceptableDateEnd)) === 1) {
+      timePeriodsExtendBeyondAcceptableRange = true;
+      break;
+    }
+  }
+
   const onSubmit = () => {
-    if (!daysUsedAreInMonths || usageIsAboveMaximum) {
-      setShowSubmitErrorMessage(true);
+    if (!daysUsedAreInMonths) {
+      setShowTotalMustBeMonthErrorMessage(true);
+    }
+
+    if (!daysUsedAreInMonths || usageIsAboveMaximum || timePeriodsExtendBeyondAcceptableRange) {
       return;
     }
 
@@ -121,7 +140,7 @@ export const MaternityLeaveTimePeriods: React.FC<MaternityLeaveProps> = props =>
 
   useEffect(() => {
     if (daysUsedAreInMonths) {
-      setShowSubmitErrorMessage(false);
+      setShowTotalMustBeMonthErrorMessage(false);
     }
   }, [daysUsedAreInMonths]);
 
@@ -197,7 +216,10 @@ export const MaternityLeaveTimePeriods: React.FC<MaternityLeaveProps> = props =>
           </div>
         );
       })}
-      <button onClick={addNewTimePeriod} className={s("addTimePeriod")}>
+      <button
+        onClick={addNewTimePeriod || timePeriodsExtendBeyondAcceptableRange}
+        className={s("addTimePeriod")}
+      >
         Bæta við tímabili
       </button>
       <Text>
@@ -208,8 +230,11 @@ export const MaternityLeaveTimePeriods: React.FC<MaternityLeaveProps> = props =>
         Áfram
       </Button>
       {usageIsAboveMaximum && <ErrorMessage message="Nýttur tími er yfir hámarki" />}
-      {showSubmitErrorMessage && !daysUsedAreInMonths && (
+      {showTotalMustBeMonthErrorMessage && !daysUsedAreInMonths && (
         <ErrorMessage message="Notaður tími verður að vera í heilum mánuðum" />
+      )}
+      {timePeriodsExtendBeyondAcceptableRange && (
+        <ErrorMessage message="Tímabil má ekki vera meira en 24 mánuðum eftir áætlaðann fæðingardag" />
       )}
     </>
   );
