@@ -3,7 +3,7 @@ import { cssVariables } from "~/cssVariables";
 
 export default ({ css }: StyleParams) => ({
   container: css`
-    padding: 25px 100px;
+    padding: 25px 64px;
   `,
 
   progressContainer: css`
@@ -12,6 +12,7 @@ export default ({ css }: StyleParams) => ({
   `,
 
   circle: css`
+    min-width: 50px;
     width: 50px;
     height: 50px;
     flex-basis: 50px;
@@ -59,6 +60,7 @@ export default ({ css }: StyleParams) => ({
     overflow: hidden;
     position: relative;
     margin: 0 24px;
+    min-width: 32px;
   `,
 
   barActive: css`
