@@ -8,3 +8,8 @@ export interface TestPersonData {
   spouseName: string;
   spouseSsn: string;
 }
+
+export interface TimePeriod {
+  startDate: Date | null;
+  endDate: Date | null;
+}

@@ -11,7 +11,7 @@ export enum PrivateEnv {
   ENVIRONMENT = "ENVIRONMENT",
 }
 
-export type TextFieldType = "text" | "email" | "phone" | "ssn";
+export type TextFieldType = "text" | "email" | "phone" | "ssn";
 
 export interface MaskedInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   mask?: Array<string | RegExp>;
@@ -20,7 +20,7 @@ export interface MaskedInputProps extends React.InputHTMLAttributes<HTMLInputEle
 export const inputTypeToInputProps: Partial<{ [key in TextFieldType]: MaskedInputProps }> = {
   text: {
     name: "text",
-    type: "text"
+    type: "text",
   },
   email: {
     name: "email",
@@ -38,5 +38,9 @@ export const inputTypeToInputProps: Partial<{ [key in TextFieldType]: MaskedInpu
     mask: [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, " ", /\d/, /\d/, /\d/, /\d/],
     type: "text",
     inputMode: "numeric",
-  }
-}
+  },
+};
+
+// Each months is defined as being 30 days. I'm not sure if this is the technically
+// correct way to go about this but I haven't found a better solution.
+export const DAYS_PER_MONTH = 30;

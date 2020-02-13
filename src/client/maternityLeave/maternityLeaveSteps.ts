@@ -1,12 +1,11 @@
+import { addDays, startOfDay } from "date-fns";
 import { Step, StepComponentProps } from "~/client/components/stepManager/StepManager";
 import { MaternityLeaveAuth } from "~/client/maternityLeave/steps/Auth";
 import { MaternityLeaveDataAgreement } from "~/client/maternityLeave/steps/DataAgreement";
 import { MaternityLeaveDateOfBirth } from "~/client/maternityLeave/steps/DateOfBirth";
-
-interface TimePeriod {
-  startDate: string; // yyyy/mm/dd
-  endDate: string; // yyyy/mm/dd
-}
+import { MaternityLeaveTimePeriods } from "~/client/maternityLeave/steps/TimePeriods";
+import { TimePeriod } from "~/types";
+import { DAYS_PER_MONTH } from "~/constants";
 
 interface MaternityLeaveFields {
   name: string;
@@ -14,7 +13,7 @@ interface MaternityLeaveFields {
   email: string;
   phoneNumber: string;
   bankNumber: string;
-  expectedDateOfBirth: string; // yyyy/mm/dd
+  expectedDateOfBirth: Date | null;
   personalTaxCreditUsagePercent: number; // 0 - 100
   union: string;
   pensionFund: string;
@@ -39,5 +38,17 @@ export const maternityLeaveSteps: Step<MaternityLeaveFields>[] = [
   {
     name: "dateOfBirth",
     component: MaternityLeaveDateOfBirth,
+  },
+  {
+    name: "timePeriods",
+    component: MaternityLeaveTimePeriods,
+    beforeEnter: async state => {
+      const startDate = state.expectedDateOfBirth || startOfDay(new Date());
+      return {
+        timePeriods: state.timePeriods.length
+          ? state.timePeriods
+          : [{ startDate, endDate: addDays(startDate, DAYS_PER_MONTH * 3 - 1) }],
+      };
+    },
   },
 ];

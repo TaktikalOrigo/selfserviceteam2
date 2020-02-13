@@ -1,6 +1,6 @@
 {
   "watch": ["server.ts", "src"],
   "ext": "ts",
-  "ignore": ["src/**/*.spec.ts", "src/components/**/*"],
+  "ignore": ["src/**/*.spec.ts", "src/client/**/*"],
   "exec": "cross-env NODE_ENV=development SERVER_ONLY=true ts-node -T -O '{\\\"module\\\":\\\"commonjs\\\"}' -r tsconfig-paths/register server"
 }
