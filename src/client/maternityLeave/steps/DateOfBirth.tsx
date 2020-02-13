@@ -1,6 +1,6 @@
 import React from "react";
 import DatePicker from "react-datepicker";
-import { parse, max, isValid, startOfDay } from "date-fns";
+import icelandicLocale from "date-fns/locale/is";
 import { MaternityLeaveProps } from "~/client/maternityLeave/maternityLeaveSteps";
 import { Button } from "~/client/elements/Button";
 import { Title } from "~/client/elements/Title";
@@ -19,14 +19,6 @@ export const MaternityLeaveDateOfBirth: React.FC<MaternityLeaveProps> = props =>
     props.setFields({ expectedDateOfBirth: date });
   };
 
-  // If the user manually types in the date
-  const onTypedDateChange = (value: string) => {
-    const date = parse(value);
-    if (isValid(date)) {
-      onDateChange(max(date, startOfDay(Date.now())));
-    }
-  };
-
   return (
     <>
       <Title marginBottom={16}>Fæðingardagur</Title>
@@ -34,19 +26,15 @@ export const MaternityLeaveDateOfBirth: React.FC<MaternityLeaveProps> = props =>
       <label className={s("label")}>
         <div className={s("label__title")}>Áætlaður fæðingardagur</div>
         <DatePicker
-          dateFormat="dd/MM/yyyy"
+          dateFormat="d. MMMM, yyyy"
           minDate={new Date()}
           selected={expectedDateOfBirth}
           onChange={onDateChange}
-          onChangeRaw={e => onTypedDateChange(e.target.value)}
           className={inputClassName}
+          locale={icelandicLocale}
         />
       </label>
-      <Button
-        primary
-        disabled={!expectedDateOfBirth || !isValid(parse(expectedDateOfBirth))}
-        onClick={() => props.nextStep()}
-      >
+      <Button primary disabled={!expectedDateOfBirth} onClick={() => props.nextStep()}>
         Áfram
       </Button>
     </>
