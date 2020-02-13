@@ -8,6 +8,7 @@ import { disableScroll, enableScroll } from "~/client/util/scroll";
 import { animate } from "~/client/util/animation/animate";
 import { compileStaticStylesheet } from "~/client/util/compileStaticStylesheet";
 import styles from "~/client/components/stepManager/StepManager.styles";
+import { MaternityLeaveProgress } from "~/client/maternityLeave/MaternityLeaveProgress";
 
 const s = compileStaticStylesheet(styles);
 
@@ -30,6 +31,7 @@ export interface StepComponentProps<T> {
 export type StepComponent<T> = React.ComponentType<StepComponentProps<T>>;
 export interface Step<T> {
   name: string;
+  sectionName?: string;
   skipStep?: (fields: T) => boolean;
   beforeEnter?: (fields: T) => Promise<Partial<T>>;
   component: StepComponent<T>;
@@ -86,7 +88,11 @@ export function stepReducer<T>(state: StepReducerState<T>, action: Action): Step
 }
 
 interface OwnProps<T> {
-  layoutComponent: React.ComponentType<{ children: React.ReactNode }>;
+  layoutComponent: React.ComponentType<{
+    children: React.ReactNode;
+    stepIndex: number;
+    steps: Array<Step<T>>;
+  }>;
   steps: Array<Step<T>>;
   initialFields: T;
   scrollContainerToY?: (y: number) => void;
@@ -238,47 +244,50 @@ export const StepManager = <T extends {}>(props: Props<T>) => {
   const isMovingForward = transitionDirection === "forward";
 
   return (
-    <div className={s("container")}>
-      <TransitionGroup>
-        <CSSTransition
-          key={stepIndex}
-          timeout={550}
-          classNames={{
-            enterActive: isMovingForward ? s("enterActive") : s("enterActiveBack"),
-            exitActive: isMovingForward ? s("exitActive") : s("exitActiveBack"),
-          }}
-          onEntered={setMinStepHeightToCurrentStep}
-        >
-          <div
-            data-step-index={stepIndex}
-            className={s("step")}
-            style={{ minHeight: minStepHeight }}
+    <>
+      <MaternityLeaveProgress steps={props.steps as any} stepIndex={stepIndex} />
+      <div className={s("container")}>
+        <TransitionGroup>
+          <CSSTransition
+            key={stepIndex}
+            timeout={550}
+            classNames={{
+              enterActive: isMovingForward ? s("enterActive") : s("enterActiveBack"),
+              exitActive: isMovingForward ? s("exitActive") : s("exitActiveBack"),
+            }}
+            onEntered={setMinStepHeightToCurrentStep}
           >
-            {showErrorScreen ? (
-              <GeneralError />
-            ) : (
-              <ErrorBoundary FallbackComponent={() => <GeneralError />}>
-                <ContentContainer>
-                  <StepComponent
-                    fields={fields as T}
-                    setFields={_fields => dispatch(stepActions.setFields(_fields))}
-                    goToStep={(name, options = {}) => goToStepWithName(stepIndex, name, options)}
-                    nextStep={() => goToStepAtIndex(stepIndex, stepIndex + 1)}
-                    prevStep={() => goToStepAtIndex(stepIndex, stepIndex - 1)}
-                    __goToStepUnsafe__={unsafe__goToStepWithName}
-                    __nextStepUnsafe__={(options = {}) =>
-                      unsafe__goToStepAtIndex(stepIndex + 1, options)
-                    }
-                    __prevStepUnsafe__={(options = {}) =>
-                      unsafe__goToStepAtIndex(stepIndex - 1, options)
-                    }
-                  />
-                </ContentContainer>
-              </ErrorBoundary>
-            )}
-          </div>
-        </CSSTransition>
-      </TransitionGroup>
-    </div>
+            <div
+              data-step-index={stepIndex}
+              className={s("step")}
+              style={{ minHeight: minStepHeight }}
+            >
+              {showErrorScreen ? (
+                <GeneralError />
+              ) : (
+                <ErrorBoundary FallbackComponent={() => <GeneralError />}>
+                  <ContentContainer stepIndex={stepIndex} steps={props.steps}>
+                    <StepComponent
+                      fields={fields as T}
+                      setFields={_fields => dispatch(stepActions.setFields(_fields))}
+                      goToStep={(name, options = {}) => goToStepWithName(stepIndex, name, options)}
+                      nextStep={() => goToStepAtIndex(stepIndex, stepIndex + 1)}
+                      prevStep={() => goToStepAtIndex(stepIndex, stepIndex - 1)}
+                      __goToStepUnsafe__={unsafe__goToStepWithName}
+                      __nextStepUnsafe__={(options = {}) =>
+                        unsafe__goToStepAtIndex(stepIndex + 1, options)
+                      }
+                      __prevStepUnsafe__={(options = {}) =>
+                        unsafe__goToStepAtIndex(stepIndex - 1, options)
+                      }
+                    />
+                  </ContentContainer>
+                </ErrorBoundary>
+              )}
+            </div>
+          </CSSTransition>
+        </TransitionGroup>
+      </div>
+    </>
   );
 };
