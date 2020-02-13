@@ -1,0 +1,28 @@
+stages:
+  - build
+
+build_production:
+  stage: build
+  image: docker:stable
+  services:
+    - docker:dind
+  script:
+    - docker login -u $AZURE_CR_USER -p $AZURE_CR_PASS taktikalcr.azurecr.io
+    - docker build
+        -t taktikalcr.azurecr.io/selfserviceteam2:master .
+    - docker push taktikalcr.azurecr.io/selfserviceteam2:master
+  environment:
+    name: Prod
+    url: http://selfserviceteam2.taktikal.is
+  only:
+    - master
+    
+build_branch:
+  image: docker:stable
+  services:
+    - docker:dind
+  stage: build
+  script:
+    - docker build -t taktikalcr.azurecr.io/selfserviceteam2:test .
+  except:
+    - master
