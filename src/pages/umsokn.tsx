@@ -12,7 +12,7 @@ export default () => {
         email: "",
         phoneNumber: "",
         bankNumber: "",
-        expectedDateOfBirth: "",
+        expectedDateOfBirth: null,
         union: "",
         pensionFund: "",
         personalFundContribution: 0,

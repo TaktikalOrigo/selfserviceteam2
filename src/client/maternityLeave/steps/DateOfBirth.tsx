@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import DatePicker from "react-datepicker";
-import { format, parse, max, isValid } from "date-fns";
+import { parse, max, isValid, startOfDay } from "date-fns";
 import { MaternityLeaveProps } from "~/client/maternityLeave/maternityLeaveSteps";
 import { Button } from "~/client/elements/Button";
 import { Title } from "~/client/elements/Title";
@@ -15,20 +15,15 @@ const inputClassName = compileStaticStylesheet(inputStyles)("input");
 export const MaternityLeaveDateOfBirth: React.FC<MaternityLeaveProps> = props => {
   const { expectedDateOfBirth } = props.fields;
 
-  const [date, setDate] = useState<Date | null>(() => {
-    return expectedDateOfBirth ? parse(expectedDateOfBirth) : null;
-  });
-
-  const onDateChange = (newDate: Date) => {
-    setDate(newDate);
-    props.setFields({ expectedDateOfBirth: format(newDate!, "YYYY/MM/DD") });
+  const onDateChange = (date: Date) => {
+    props.setFields({ expectedDateOfBirth: date });
   };
 
   // If the user manually types in the date
   const onTypedDateChange = (value: string) => {
-    const newDate = parse(value);
-    if (isValid(newDate)) {
-      onDateChange(max(newDate, Date.now()));
+    const date = parse(value);
+    if (isValid(date)) {
+      onDateChange(max(date, startOfDay(Date.now())));
     }
   };
 
@@ -41,7 +36,7 @@ export const MaternityLeaveDateOfBirth: React.FC<MaternityLeaveProps> = props =>
         <DatePicker
           dateFormat="dd/MM/yyyy"
           minDate={new Date()}
-          selected={date}
+          selected={expectedDateOfBirth}
           onChange={onDateChange}
           onChangeRaw={e => onTypedDateChange(e.target.value)}
           className={inputClassName}
