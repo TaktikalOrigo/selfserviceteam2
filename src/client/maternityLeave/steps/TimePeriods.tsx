@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
+import icelandicLocale from "date-fns/locale/is";
 import { addDays, addMonths, subDays, differenceInDays, startOfDay, compareAsc } from "date-fns";
 import { MaternityLeaveProps } from "~/client/maternityLeave/maternityLeaveSteps";
 import { Button } from "~/client/elements/Button";
@@ -183,13 +184,13 @@ export const MaternityLeaveTimePeriods: React.FC<MaternityLeaveProps> = props =>
           <div key={i} className={s("timePeriod")} style={{ zIndex: timePeriods.length - i }}>
             <div className={s("timePeriod__upper")}>
               <div className={s("timePeriod__section")}>
-                <div>Start:</div>
+                <div>Frá</div>
                 <div className={s("datePicker__container")}>
                   <i className={s("datePicker__icon")}>
                     <CalendarIcon />
                   </i>
                   <DatePicker
-                    dateFormat="dd/MM/yyyy"
+                    dateFormat="d. MMMM, yyyy"
                     minDate={getMinStartDateForPeriodAtIndex(i)}
                     selected={period.startDate}
                     selectsStart
@@ -197,18 +198,19 @@ export const MaternityLeaveTimePeriods: React.FC<MaternityLeaveProps> = props =>
                     endDate={period.endDate}
                     onChange={date => date && setStartDateAtIndex(date, i)}
                     className={inputClassName}
+                    locale={icelandicLocale}
                   />
                 </div>
               </div>
               <div className={s("timePeriod__section")}>
-                <div>End:</div>
+                <div>Til</div>
                 <div className={s("datePicker__container")}>
                   <i className={s("datePicker__icon")}>
                     <CalendarIcon />
                   </i>
                   <DatePicker
                     readOnly={!period.startDate}
-                    dateFormat="dd/MM/yyyy"
+                    dateFormat="d. MMMM, yyyy"
                     selectsEnd
                     selected={period.endDate}
                     startDate={period.startDate}
@@ -217,6 +219,7 @@ export const MaternityLeaveTimePeriods: React.FC<MaternityLeaveProps> = props =>
                     maxDate={getMaxEndDateForPeriodAtIndex(i)}
                     onChange={date => date && setEndDateAtIndex(date, i)}
                     className={inputClassName}
+                    locale={icelandicLocale}
                   />
                 </div>
               </div>
