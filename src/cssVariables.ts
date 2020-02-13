@@ -1,12 +1,13 @@
-const maxXs = 768;
-const maxSm = 992;
-const maxMd = 1200;
+export const maxXs = 768;
+export const maxSm = 992;
+export const maxMd = 1200;
 
 const colorBorderFocus = "rgba(35, 156, 255, 0.35)";
 
 export const cssVariables = {
   borderRadiusNormal: "4px",
-  colorOffWhite: "#f3f3f3",
+  colorPrimary: "#0061FF",
+  colorOffWhite: "#F2F2F5",
   colorBlack: "#474747",
   colorSuccess: "green",
   colorError: "#ff5468",

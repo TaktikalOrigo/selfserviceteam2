@@ -7,7 +7,7 @@ import { MaternityLeaveTimePeriods } from "~/client/maternityLeave/steps/TimePer
 import { TimePeriod } from "~/types";
 import { DAYS_PER_MONTH } from "~/constants";
 
-interface MaternityLeaveFields {
+export interface MaternityLeaveFields {
   name: string;
   ssn: string;
   email: string;
@@ -28,10 +28,12 @@ export type MaternityLeaveProps = StepComponentProps<MaternityLeaveFields>;
 
 export const maternityLeaveSteps: Step<MaternityLeaveFields>[] = [
   {
+    sectionName: "Auðkenning",
     name: "auth",
     component: MaternityLeaveAuth,
   },
   {
+    sectionName: "Upplýsingar",
     name: "dataAgreement",
     component: MaternityLeaveDataAgreement,
   },
@@ -40,6 +42,7 @@ export const maternityLeaveSteps: Step<MaternityLeaveFields>[] = [
     component: MaternityLeaveDateOfBirth,
   },
   {
+    sectionName: "Tímabil",
     name: "timePeriods",
     component: MaternityLeaveTimePeriods,
     beforeEnter: async state => {

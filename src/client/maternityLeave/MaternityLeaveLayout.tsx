@@ -4,7 +4,7 @@ import { compileStaticStylesheet } from "~/client/util/compileStaticStylesheet";
 const s = compileStaticStylesheet(({ css }) => ({
   container: css`
     padding: 32px;
-    min-height: 100vh;
+    min-height: calc(100vh - 100px);
   `,
 }));
 
