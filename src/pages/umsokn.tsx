@@ -1,5 +1,7 @@
+import React from "react";
 import { StepManager } from "~/client/components/stepManager/StepManager";
 import { maternityLeaveSteps } from "~/client/maternityLeave/maternityLeaveSteps";
+import { MaternityLeaveLayout } from "~/client/maternityLeave/MaternityLeaveLayout";
 
 export default () => {
   return (
@@ -20,7 +22,7 @@ export default () => {
         hasEmployeeAccepted: false,
         hasGovernmentAccepted: false,
       }}
-      layoutComponent={props => <div style={{ padding: 32 }}>{props.children}</div>}
+      layoutComponent={MaternityLeaveLayout}
       steps={maternityLeaveSteps}
     />
   );

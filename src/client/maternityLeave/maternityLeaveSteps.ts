@@ -1,6 +1,7 @@
 import { Step, StepComponentProps } from "~/client/components/stepManager/StepManager";
 import { MaternityLeaveAuth } from "~/client/maternityLeave/steps/Auth";
 import { MaternityLeaveDataAgreement } from "~/client/maternityLeave/steps/DataAgreement";
+import { MaternityLeaveDateOfBirth } from "~/client/maternityLeave/steps/DateOfBirth";
 
 interface TimePeriod {
   startDate: string; // yyyy/mm/dd
@@ -34,5 +35,9 @@ export const maternityLeaveSteps: Step<MaternityLeaveFields>[] = [
   {
     name: "dataAgreement",
     component: MaternityLeaveDataAgreement,
+  },
+  {
+    name: "dateOfBirth",
+    component: MaternityLeaveDateOfBirth,
   },
 ];
