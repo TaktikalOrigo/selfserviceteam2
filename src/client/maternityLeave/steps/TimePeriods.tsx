@@ -56,7 +56,7 @@ const getDaysInRange = (period: TimePeriod): number => {
 export const MaternityLeaveTimePeriods: React.FC<MaternityLeaveProps> = props => {
   const { timePeriods } = props.fields;
 
-  const [showTotalMustBeMonthErrorMessage, setShowTotalMustBeMonthErrorMessage] = useState(false);
+  const [showTotalMustBeMonthError, setShowTotalMustBeMonthErrorMessage] = useState(false);
 
   // 3 months for each parent, 3 months shared between them. If the other parent
   // has taken from the shared time then that will reduce the available months.
@@ -109,6 +109,7 @@ export const MaternityLeaveTimePeriods: React.FC<MaternityLeaveProps> = props =>
 
   const daysUsedAreInMonths = daysUsed % DAYS_PER_MONTH === 0;
   const usageIsAboveMaximum = daysUsed > daysAvailable;
+  const usageIsBelowMinimum = daysUsed < DAYS_PER_MONTH * 3;
 
   const acceptableDateEnd = addMonths(props.fields.expectedDateOfBirth!, 24);
   let timePeriodsExtendBeyondAcceptableRange = false;
@@ -126,12 +127,23 @@ export const MaternityLeaveTimePeriods: React.FC<MaternityLeaveProps> = props =>
     }
   }
 
+  const isAnyTimePeriodIncomplete = !timePeriods.reduce(
+    (acc, item) => acc && !!(item.startDate && item.endDate),
+    true,
+  );
+
   const onSubmit = () => {
     if (!daysUsedAreInMonths) {
       setShowTotalMustBeMonthErrorMessage(true);
     }
 
-    if (!daysUsedAreInMonths || usageIsAboveMaximum || timePeriodsExtendBeyondAcceptableRange) {
+    if (
+      !daysUsedAreInMonths ||
+      usageIsAboveMaximum ||
+      timePeriodsExtendBeyondAcceptableRange ||
+      usageIsBelowMinimum ||
+      isAnyTimePeriodIncomplete
+    ) {
       return;
     }
 
@@ -226,11 +238,15 @@ export const MaternityLeaveTimePeriods: React.FC<MaternityLeaveProps> = props =>
         Þú hefur valið <strong>{usedMessage}</strong> af <strong>{monthsAvailable}</strong> mánuðum
         mögulegum
       </Text>
-      <Button disabled={usageIsAboveMaximum} primary onClick={onSubmit}>
+      <Button
+        disabled={usageIsAboveMaximum || isAnyTimePeriodIncomplete || usageIsBelowMinimum}
+        primary
+        onClick={onSubmit}
+      >
         Áfram
       </Button>
       {usageIsAboveMaximum && <ErrorMessage message="Nýttur tími er yfir hámarki" />}
-      {showTotalMustBeMonthErrorMessage && !daysUsedAreInMonths && (
+      {showTotalMustBeMonthError && !daysUsedAreInMonths && (
         <ErrorMessage message="Notaður tími verður að vera í heilum mánuðum" />
       )}
       {timePeriodsExtendBeyondAcceptableRange && (
