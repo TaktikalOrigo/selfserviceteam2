@@ -16,14 +16,11 @@ export default ({ css }: StyleParams) => ({
     }
 
     @media (max-width: ${cssBreakpoints.maxXs}) {
+      width: auto;
       flex-direction: column;
 
       & > *:first-of-type {
         margin-right: 0;
-      }
-
-      & > * {
-        margin-bottom: 32px;
       }
     }
   `,
