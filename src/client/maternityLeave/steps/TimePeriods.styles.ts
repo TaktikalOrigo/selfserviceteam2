@@ -99,16 +99,16 @@ export default ({ css }: StyleParams) => ({
   `,
 
   bar__wrapper: css`
-    flex-basis: 0;
+    display: inline-block;
     position: relative;
     z-index: 10;
 
     &--2 {
-      flex-grow: 2;
+      width: 20%;
     }
 
     &--4 {
-      flex-grow: 4;
+      width: 40%;
     }
   `,
 

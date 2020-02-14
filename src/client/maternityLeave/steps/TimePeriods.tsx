@@ -226,6 +226,12 @@ export const MaternityLeaveTimePeriods: React.FC<MaternityLeaveProps> = props =>
                     onChange={date => date && setStartDateAtIndex(date, i)}
                     className={inputClassName}
                     locale={icelandicLocale}
+                    popperPlacement="bottom-start"
+                    popperModifiers={{
+                      flip: { behavior: ["bottom"] },
+                      preventOverflow: { enabled: false },
+                      hide: { enabled: false },
+                    }}
                   />
                 </div>
               </div>
@@ -247,6 +253,12 @@ export const MaternityLeaveTimePeriods: React.FC<MaternityLeaveProps> = props =>
                     onChange={date => date && setEndDateAtIndex(date, i)}
                     className={inputClassName}
                     locale={icelandicLocale}
+                    popperPlacement="bottom-start"
+                    popperModifiers={{
+                      flip: { behavior: ["bottom"] },
+                      preventOverflow: { enabled: false },
+                      hide: { enabled: false },
+                    }}
                   />
                 </div>
               </div>

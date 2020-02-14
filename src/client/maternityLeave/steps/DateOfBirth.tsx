@@ -25,7 +25,7 @@ export const MaternityLeaveDateOfBirth: React.FC<MaternityLeaveProps> = props =>
     <CenteredWrapper>
       <Title marginBottom={16}>Þín bíður fallegt hlutverk.</Title>
       <Text marginBottom={48}>Hvenær er settur fæðingardagur barnsins þíns?</Text>
-      <label className={s("label")}>
+      <div className={s("label")}>
         <div className={s("label__title")}>Settur fæðingardagur</div>
         <div className={s("datePicker__container")}>
           <i className={s("datePicker__icon")}>
@@ -40,7 +40,7 @@ export const MaternityLeaveDateOfBirth: React.FC<MaternityLeaveProps> = props =>
             locale={icelandicLocale}
           />
         </div>
-      </label>
+      </div>
       <Button primary disabled={!expectedDateOfBirth} onClick={() => props.nextStep()}>
         Áfram
       </Button>
