@@ -18,8 +18,9 @@ export default ({ css }: StyleParams) => ({
 
   text: css`
     font-family: ${cssVariables.bodyFont};
+
     display: block;
-    font-size: 18px;
+    font-size: 24px;
     line-height: 1.4;
     font-weight: 400;
 
@@ -30,7 +31,7 @@ export default ({ css }: StyleParams) => ({
 
     &--body {
       color: ${cssVariables.colorBlack};
-      font-size: 18px;
+      font-size: 24px;
       font-weight: 400;
       line-height: 1.76;
     }

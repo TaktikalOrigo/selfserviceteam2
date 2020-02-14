@@ -26,9 +26,9 @@ export default ({ css }: StyleParams) => ({
   `,
 
   label: css`
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
-    margin-bottom: 0.5rem;
+    margin-bottom: 12px;
     min-height: 14px;
     color: ${cssVariables.colorBlack};
   `,

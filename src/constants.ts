@@ -11,7 +11,7 @@ export enum PrivateEnv {
   ENVIRONMENT = "ENVIRONMENT",
 }
 
-export type TextFieldType = "text" | "email" | "phone" | "ssn";
+export type TextFieldType = "text" | "email" | "phone" | "ssn" | "bankNumber";
 
 export interface MaskedInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   mask?: Array<string | RegExp>;
@@ -38,6 +38,12 @@ export const inputTypeToInputProps: Partial<{ [key in TextFieldType]: MaskedInpu
     mask: [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, " ", /\d/, /\d/, /\d/, /\d/],
     type: "text",
     inputMode: "numeric",
+  },
+  bankNumber: {
+    name: "bankanumer",
+    type: "text",
+    inputMode: "numeric",
+    mask: [/\d/, /\d/, /\d/, /\d/, "-", /\d/, /\d/, "-", /\d/, /\d/, /\d/, /\d/, /\d/, /\d/],
   },
 };
 

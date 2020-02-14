@@ -32,7 +32,7 @@ const Checkbox: React.FC<Props> = props => {
           className={s("visibleInput")}
           onChange={onChange}
         />
-        <div className={s("box")}>
+        <div className={s("box", { checked: isChecked })}>
           <div className={s("fillWrapper", { checked: isChecked })}>
             <div className={s("fill")} />
           </div>

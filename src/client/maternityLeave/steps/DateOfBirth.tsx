@@ -8,6 +8,8 @@ import { Text } from "~/client/elements/Text";
 import { compileStaticStylesheet } from "~/client/util/compileStaticStylesheet";
 import inputStyles from "~/client/elements/Input.styles";
 import styles from "~/client/maternityLeave/steps/DateOfBirth.styles";
+import { CenteredWrapper } from "~/client/components/stepManager/CenteredWrapper";
+import { CalendarIcon } from "~/client/icon/CalendarIcon";
 
 const s = compileStaticStylesheet(styles);
 const inputClassName = compileStaticStylesheet(inputStyles)("input");
@@ -20,23 +22,28 @@ export const MaternityLeaveDateOfBirth: React.FC<MaternityLeaveProps> = props =>
   };
 
   return (
-    <>
-      <Title marginBottom={16}>Fæðingardagur</Title>
-      <Text marginBottom={32}>Hver er áætlaður fæðingardagur barnins þíns?</Text>
+    <CenteredWrapper>
+      <Title marginBottom={16}>Þín bíður fallegt hlutverk.</Title>
+      <Text marginBottom={48}>Hvenær er settur fæðingardagur barnsins þíns?</Text>
       <label className={s("label")}>
-        <div className={s("label__title")}>Áætlaður fæðingardagur</div>
-        <DatePicker
-          dateFormat="d. MMMM, yyyy"
-          minDate={new Date()}
-          selected={expectedDateOfBirth}
-          onChange={onDateChange}
-          className={inputClassName}
-          locale={icelandicLocale}
-        />
+        <div className={s("label__title")}>Settur fæðingardagur</div>
+        <div className={s("datePicker__container")}>
+          <i className={s("datePicker__icon")}>
+            <CalendarIcon />
+          </i>
+          <DatePicker
+            dateFormat="d. MMMM, yyyy"
+            minDate={new Date()}
+            selected={expectedDateOfBirth}
+            onChange={onDateChange}
+            className={inputClassName}
+            locale={icelandicLocale}
+          />
+        </div>
       </label>
       <Button primary disabled={!expectedDateOfBirth} onClick={() => props.nextStep()}>
         Áfram
       </Button>
-    </>
+    </CenteredWrapper>
   );
 };

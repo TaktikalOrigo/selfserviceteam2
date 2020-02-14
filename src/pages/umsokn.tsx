@@ -19,6 +19,8 @@ export default () => {
         personalTaxCreditUsagePercent: 100,
         monthsOfLeaveAvailable: 0,
         timePeriods: [],
+        employerContactEmail: "",
+        employerContactName: "",
         hasEmployeeAccepted: false,
         hasGovernmentAccepted: false,
       }}

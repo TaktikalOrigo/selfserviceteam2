@@ -61,7 +61,7 @@ export default ({ css, keyframes }: StyleParams) => {
       height: inherit;
 
       svg {
-        fill: ${cssVariables.colorBlack};
+        fill: ${cssVariables.colorPrimary};
       }
     `,
 

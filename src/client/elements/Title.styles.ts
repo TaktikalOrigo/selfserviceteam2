@@ -20,6 +20,8 @@ export default ({ css }: StyleParams) => ({
     display: block;
     line-height: 1.33334;
     color: ${cssVariables.colorBlack};
+    font-family: ${cssVariables.bodyFont};
+    font-weight: 600;
 
     &--uppercase {
       text-transform: uppercase;

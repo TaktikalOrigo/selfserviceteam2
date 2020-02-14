@@ -10,6 +10,7 @@ import { isValueValid } from "~/common/util/form/getFieldError";
 import { ErrorMessage } from "~/client/elements/ErrorMessage";
 import { TestPersonData } from "~/types";
 import { digits } from "~/common/util/form/digits";
+import { CenteredWrapper } from "~/client/components/stepManager/CenteredWrapper";
 
 export const MaternityLeaveAuth: React.FC<MaternityLeaveProps> = props => {
   const [pending, setPending] = useState(false);
@@ -57,27 +58,35 @@ export const MaternityLeaveAuth: React.FC<MaternityLeaveProps> = props => {
   };
 
   return (
-    <form onSubmit={onSubmit}>
-      <Title marginBottom={16}>Sækja um fæðingarorlof eða styrk</Title>
-      <Text marginBottom={32}>
-        Foreldri skal sækja um greiðslur úr Fæðingarorlofssjóði sex vikum fyrir áætlaðan fæðingardag
-        barns.
-      </Text>
-      <Textfield
-        label="Kennitala"
-        type="ssn"
-        value={props.fields.ssn}
-        onChange={e => !pending && props.setFields({ ssn: e.target.value })}
-      />
-      <Button
-        primary
-        type="submit"
-        disabled={!isValueValid("ssn", props.fields.ssn)}
-        loading={pending}
-      >
-        Áfram
-      </Button>
-      <ErrorMessage message={errorMessage} />
-    </form>
+    <CenteredWrapper>
+      <form onSubmit={onSubmit}>
+        <Title marginBottom={32}>Sækja um fæðingarorlof eða styrk</Title>
+        <Text marginBottom={16} maxWidth={750}>
+          Foreldri skal sækja um greiðslur úr Fæðingarorlofssjóði sex vikum fyrir áætlaðan
+          fæðingardag barns.
+        </Text>
+        <Text marginBottom={48} maxWidth={750}>
+          Ef þú ert þegar búin/n að sækja um ferðu beint inná mínar síður.
+        </Text>
+        <Textfield
+          label="Kennitala"
+          type="ssn"
+          value={props.fields.ssn}
+          onChange={e => !pending && props.setFields({ ssn: e.target.value })}
+          placeholder="000000 0000"
+          marginBottom={48}
+          maxWidth={240}
+        />
+        <Button
+          primary
+          type="submit"
+          disabled={!isValueValid("ssn", props.fields.ssn)}
+          loading={pending}
+        >
+          Áfram
+        </Button>
+        <ErrorMessage message={errorMessage} />
+      </form>
+    </CenteredWrapper>
   );
 };
