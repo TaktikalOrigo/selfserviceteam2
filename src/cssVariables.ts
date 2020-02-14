@@ -1,6 +1,7 @@
 export const maxXs = 768;
 export const maxSm = 992;
 export const maxMd = 1200;
+export const HEADER_HEIGHT = 80;
 
 const colorBorderFocus = "rgba(35, 156, 255, 0.35)";
 
@@ -13,6 +14,7 @@ export const cssVariables = {
   colorError: "#ff5468",
   bodyFont: "'IBM Plex Sans', sans-serif",
   bezierSmooth: "0.46, 0.19, 0.13, 0.98",
+  headerHeight: `${HEADER_HEIGHT}px`,
 
   colorBorderFocus,
   boxShadowBorderFocus: `0 0 0 8px ${colorBorderFocus}`,

@@ -8,7 +8,7 @@ import { disableScroll, enableScroll } from "~/client/util/scroll";
 import { animate } from "~/client/util/animation/animate";
 import { compileStaticStylesheet } from "~/client/util/compileStaticStylesheet";
 import styles from "~/client/components/stepManager/StepManager.styles";
-import { MaternityLeaveProgress } from "~/client/maternityLeave/MaternityLeaveProgress";
+import { MaternityLeaveProgressNew } from "~/client/maternityLeave/ProgressNew";
 
 const s = compileStaticStylesheet(styles);
 
@@ -31,6 +31,7 @@ export interface StepComponentProps<T> {
 export type StepComponent<T> = React.ComponentType<StepComponentProps<T>>;
 export interface Step<T> {
   name: string;
+  icon?: React.ReactNode;
   sectionName?: string;
   skipStep?: (fields: T) => boolean;
   beforeEnter?: (fields: T) => Promise<Partial<T>>;
@@ -245,7 +246,7 @@ export const StepManager = <T extends {}>(props: Props<T>) => {
 
   return (
     <>
-      <MaternityLeaveProgress steps={props.steps as any} stepIndex={stepIndex} />
+      <MaternityLeaveProgressNew steps={props.steps as any} stepIndex={stepIndex} />
       <div className={s("container")}>
         <TransitionGroup>
           <CSSTransition

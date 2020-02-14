@@ -1,10 +1,13 @@
 import React from "react";
 import { useStylesheet, StyleParams } from "@taktikal/stylesheets";
-import { cssBreakpoints } from "~/cssVariables";
+import { cssBreakpoints, HEADER_HEIGHT } from "~/cssVariables";
 
 const styles = ({ css }: StyleParams) => ({
   container: css`
-    min-height: calc(100vh - 100px);
+    min-height: calc(100vh - ${HEADER_HEIGHT + 42}px);
+    margin: 0 auto;
+    width: 960px;
+    max-width: 100%;
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -40,8 +43,9 @@ const styles = ({ css }: StyleParams) => ({
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    padding-bottom: 64px;
+    align-items: stretch;
+    padding-top: 32px;
+    padding-bottom: 128px;
 
     /**
      * Make scrollable on IE because of bug described above.

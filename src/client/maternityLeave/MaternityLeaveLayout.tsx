@@ -1,10 +1,11 @@
 import React from "react";
 import { compileStaticStylesheet } from "~/client/util/compileStaticStylesheet";
+import { HEADER_HEIGHT } from "~/cssVariables";
 
 const s = compileStaticStylesheet(({ css }) => ({
   container: css`
-    padding: 32px;
-    min-height: calc(100vh - 100px);
+    padding: 0 32px;
+    min-height: calc(100vh - ${HEADER_HEIGHT + 42}px);
   `,
 }));
 

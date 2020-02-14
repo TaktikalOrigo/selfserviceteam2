@@ -8,6 +8,10 @@ import { TimePeriod } from "~/types";
 import { DAYS_PER_MONTH } from "~/constants";
 import { MaternityLeaveConfirmation } from "~/client/maternityLeave/steps/Confirmation";
 import { MaternityLeaveComplete } from "~/client/maternityLeave/steps/Complete";
+import { CalendarIcon } from "~/client/icon/CalendarIcon";
+import { PersonIcon } from "~/client/icon/PersonIcon";
+import { PencilIcon } from "~/client/icon/PencilIcon";
+import { CheckmarkIcon } from "~/client/icon/CheckmarkIcon";
 
 export interface MaternityLeaveFields {
   name: string;
@@ -32,21 +36,24 @@ export type MaternityLeaveProps = StepComponentProps<MaternityLeaveFields>;
 
 export const maternityLeaveSteps: Step<MaternityLeaveFields>[] = [
   {
+    icon: <PersonIcon />,
     sectionName: "Auðkenning",
     name: "auth",
     component: MaternityLeaveAuth,
   },
   {
+    icon: <PencilIcon />,
     sectionName: "Upplýsingar",
     name: "dataAgreement",
     component: MaternityLeaveDataAgreement,
   },
   {
+    sectionName: "Tímabil",
+    icon: <CalendarIcon />,
     name: "dateOfBirth",
     component: MaternityLeaveDateOfBirth,
   },
   {
-    sectionName: "Tímabil",
     name: "timePeriods",
     component: MaternityLeaveTimePeriods,
     beforeEnter: async state => {
@@ -59,6 +66,7 @@ export const maternityLeaveSteps: Step<MaternityLeaveFields>[] = [
     },
   },
   {
+    icon: <CheckmarkIcon />,
     sectionName: "Staðfesting",
     name: "confirmation",
     component: MaternityLeaveConfirmation,
