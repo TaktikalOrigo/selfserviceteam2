@@ -13,6 +13,7 @@ import { Text } from "~/client/elements/Text";
 import { CalendarIcon } from "~/client/icon/CalendarIcon";
 import { TimePeriod } from "~/types";
 import { DAYS_PER_MONTH } from "~/constants";
+import { CenteredWrapper } from "~/client/components/stepManager/CenteredWrapper";
 
 const s = compileStaticStylesheet(styles);
 const inputClassName = compileStaticStylesheet(inputStyles)("input");
@@ -114,7 +115,7 @@ export const MaternityLeaveTimePeriods: React.FC<MaternityLeaveProps> = props =>
 
   const daysUsedAreInMonths = daysUsed % DAYS_PER_MONTH === 0;
   const usageIsAboveMaximum = daysUsed > daysAvailable;
-  const usageIsBelowMinimum = daysUsed < DAYS_PER_MONTH * 3;
+  const usageIsBelowMinimum = daysUsed < DAYS_PER_MONTH * 4;
 
   const acceptableDateEnd = addMonths(props.fields.expectedDateOfBirth!, 24);
   let timePeriodsExtendBeyondAcceptableRange = false;
@@ -163,28 +164,54 @@ export const MaternityLeaveTimePeriods: React.FC<MaternityLeaveProps> = props =>
 
   const usedMessage = constructUsedMessage(daysUsed);
 
+  const barT = Math.min(1, daysUsed / (DAYS_PER_MONTH * 10));
+
   return (
-    <>
-      <Title marginBottom={8}>Áætlaður réttur þinn er</Title>
-      <Title marginBottom={40} heading={2}>
-        {/* This value will be dynamic */}
-        500.000 kr.
-      </Title>
-      <Title marginBottom={16} heading={3}>
-        Viltu breyta eða skipta upp tímabilinu?
-      </Title>
-      <Text maxWidth={720} marginBottom={40}>
-        Hér getur þú skipt orlofinu eða dreift því á mismunandi tíma. Annars reiknast það samfellt
-        og miðast við fæðingardag barns. Ath! Lágmarksval eru tvær vikur.
+    <CenteredWrapper>
+      <Title marginBottom={16}>Áætlaður réttur þinn er 360.000 kr. á mánuði</Title>
+      <Text marginBottom={40}>
+        Miðað við 80% af stærsta tekjuþættinum frá viðkomandi fyrirtæki.
       </Text>
+
+      <Title marginBottom={16} heading={2}>
+        Vilt þú breyta eða skipta upp tímabilinu?
+      </Title>
+      <Text maxWidth={820} marginBottom={64}>
+        Hér getur þú ákvarðað hversu langt orlof þú tekur, skipt orlofinu eða dreift því á
+        mismunandi tíma. Ef engu er breytt reiknast það samfellt og miðast við fæðingardag barns.
+      </Text>
+      <div className={s("barContainer")}>
+        <div
+          className={s("bar__filled", { error: usageIsAboveMaximum || usageIsBelowMinimum })}
+          style={{ width: `${barT * 100}%` }}
+        />
+        <div className={s("bar__wrapper", { 4: true })}>
+          <div className={s("bar__separator")} />
+          <div className={s("bar__label")}>Þinn réttur</div>
+          <div className={s("bar__months")}>4 mánuðir</div>
+        </div>
+        <div className={s("bar__wrapper", { 2: true })}>
+          <div className={s("bar__separator")} />
+          <div className={s("bar__label")}>Sameiginlegur réttur</div>
+          <div className={s("bar__months")}>2 mánuðir</div>
+        </div>
+        <div className={s("bar__wrapper", { 4: true })}>
+          <div className={s("bar__label")}>Réttur maka</div>
+          <div className={s("bar__months")}>4 mánuðir</div>
+        </div>
+      </div>
       {timePeriods.map((period, i) => {
         const hasBothDates = period.startDate && period.endDate;
         const daysInRange = getDaysInRange(period);
         return (
-          <div key={i} className={s("timePeriod")} style={{ zIndex: timePeriods.length - i }}>
+          <div
+            key={i}
+            className={s("timePeriod", { last: i === timePeriods.length - 1 + 10 })}
+            style={{ zIndex: 10 + timePeriods.length - i }}
+          >
             <div className={s("timePeriod__upper")}>
               <div className={s("timePeriod__section")}>
-                <div>Frá</div>
+                {i === 0 && <div className={s("timePeriod__label")}>Frá</div>}
                 <div className={s("datePicker__container")}>
                   <i className={s("datePicker__icon")}>
                     <CalendarIcon />
@@ -203,7 +230,7 @@ export const MaternityLeaveTimePeriods: React.FC<MaternityLeaveProps> = props =>
                 </div>
               </div>
               <div className={s("timePeriod__section")}>
-                <div>Til</div>
+                {i === 0 && <div className={s("timePeriod__label")}>Til</div>}
                 <div className={s("datePicker__container")}>
                   <i className={s("datePicker__icon")}>
                     <CalendarIcon />
@@ -238,11 +265,12 @@ export const MaternityLeaveTimePeriods: React.FC<MaternityLeaveProps> = props =>
       <button
         onClick={addNewTimePeriod || timePeriodsExtendBeyondAcceptableRange}
         className={s("addTimePeriod")}
+        disabled={isAnyTimePeriodIncomplete}
       >
         Bæta við tímabili
       </button>
-      <Text>
-        Þú hefur valið <strong>{usedMessage}</strong> af <strong>{monthsAvailable}</strong> mánuðum
+      <Text marginBottom={40}>
+        Þú hefur valið <strong>{usedMessage}</strong> af <strong>{monthsAvailable}</strong> mánuðum.
         mögulegum
       </Text>
       <Button
@@ -254,11 +282,11 @@ export const MaternityLeaveTimePeriods: React.FC<MaternityLeaveProps> = props =>
       </Button>
       {usageIsAboveMaximum && <ErrorMessage message="Nýttur tími er yfir hámarki" />}
       {showTotalMustBeMonthError && !daysUsedAreInMonths && (
-        <ErrorMessage message="Notaður tími verður að vera í heilum mánuðum" />
+        <ErrorMessage message="Valinn tími verður að vera í heilum mánuðum" />
       )}
       {timePeriodsExtendBeyondAcceptableRange && (
         <ErrorMessage message="Tímabil má ekki vera meira en 24 mánuðum eftir áætlaðann fæðingardag" />
       )}
-    </>
+    </CenteredWrapper>
   );
 };

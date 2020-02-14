@@ -12,7 +12,7 @@ export default ({ css }: StyleParams) => ({
     border-radius: ${cssVariables.borderRadiusNormal};
     color: ${cssVariables.colorBlack};
     font-family: ${cssVariables.bodyFont};
-    background-color: ${cssVariables.colorOffWhite};
+    background-color: white;
     border: none;
     display: block;
     width: 100%;
@@ -23,7 +23,7 @@ export default ({ css }: StyleParams) => ({
     -webkit-appearance: none;
 
     &:focus {
-      border-color: ${cssVariables.colorBlack};
+      border-color: ${cssVariables.colorPrimary};
     }
 
     @keyframes autofill {
@@ -32,20 +32,13 @@ export default ({ css }: StyleParams) => ({
       }
     }
 
-    &:-webkit-autofill {
-      -webkit-text-fill-color: ${cssVariables.colorBlack};
-      box-shadow: 0 0 0 30px ${colorBorder} inset;
-      animation-name: autofill;
-      animation-fill-mode: both;
-    }
-
     &:read-only {
-      background-color: ${colorBorder} !important;
-      border-color: ${colorBorder} !important;
+      background-color: ${cssVariables.colorOffWhite} !important;
+      border-color: ${cssVariables.colorOffWhite} !important;
     }
 
     &::placeholder {
-      color: rgba(0, 0, 0, 0.4);
+      color: #80809d;
     }
   `,
 });

@@ -32,15 +32,14 @@ export default ({ css, keyframes }: StyleParams) => {
 
     button: css`
       font-family: ${cssVariables.bodyFont};
-      color: ${cssVariables.colorBlack};
+      color: ${cssVariables.colorPrimary};
       padding: 0;
       position: relative;
       background-color: transparent;
       border: none;
       font-weight: 600;
-      text-transform: uppercase;
       letter-spacing: 1px;
-      font-size: 18px;
+      font-size: 16px;
       line-height: 1;
       border-radius: 4px;
       max-width: 100%;
@@ -58,7 +57,7 @@ export default ({ css, keyframes }: StyleParams) => {
       }
 
       svg {
-        fill: ${cssVariables.colorBlack};
+        fill: ${cssVariables.colorPrimary};
       }
 
       &--full-width {
@@ -68,17 +67,17 @@ export default ({ css, keyframes }: StyleParams) => {
       }
 
       &--primary {
-        background-color: ${cssVariables.colorBlack};
+        background-color: ${cssVariables.colorPrimary};
         color: white;
         transition: box-shadow 0.3s, background-color 0.3s, border-color 0.3s, opacity 0.3s;
 
         &:hover {
-          background-color: ${cssVariables.colorBlack};
-          box-shadow: 0 6px 10px rgba(0, 0, 0, 0.25);
+          background-color: ${cssVariables.colorPrimary};
+          box-shadow: 0 6px 10px rgba(0, 70, 185, 0.25);
         }
 
         &:active {
-          box-shadow: 0 6px 10px rgba(0, 0, 0, 0.25);
+          box-shadow: 0 6px 10px rgba(0, 70, 185, 0.25);
         }
 
         svg {
@@ -94,7 +93,7 @@ export default ({ css, keyframes }: StyleParams) => {
     `,
 
     button__focus: css`
-      padding: 14px 30px;
+      padding: 14px 48px;
       position: relative;
       transition: box-shadow 0.2s;
       border-radius: 4px;

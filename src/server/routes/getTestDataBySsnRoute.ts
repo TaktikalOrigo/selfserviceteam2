@@ -15,6 +15,11 @@ export const handleGetTestDataBySsn: Handler = (req, res) => {
     return;
   }
 
+  if (ssn === "0000000000") {
+    res.json(testPersonList[0]);
+    return;
+  }
+
   if (!ssnToTestPerson[ssn]) {
     res.status(404).json({ message: "No person with ssn" });
     return;

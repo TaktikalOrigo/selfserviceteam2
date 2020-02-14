@@ -13,17 +13,22 @@ export default ({ css }: StyleParams) => ({
   `,
 
   box: css`
-    background: ${cssVariables.colorBlack};
+    background: #ccccd8;
     display: inline-block;
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     border-radius: 4px;
     position: relative;
+    transition: background 0.1s;
+
+    &--checked {
+      background: ${cssVariables.colorPrimary};
+    }
   `,
 
   fillWrapper: css`
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     transition: transform 0.2s;
     transform: scale(1);
     border: none;
@@ -39,21 +44,22 @@ export default ({ css }: StyleParams) => ({
     left: 50%;
     transform: translate(-50%, -50%);
     display: block;
-    width: 16px;
-    height: 16px;
+    width: 22px;
+    height: 22px;
     background: white;
     border-radius: 2px;
   `,
 
   text: css`
     color: ${cssVariables.colorBlack};
+    font-family: ${cssVariables.bodyFont};
+    font-size: 16px;
+    line-height: 1.5;
     vertical-align: top;
     color: black;
-    font-size: 18px;
-    line-height: 23px;
     display: inline-block;
     width: calc(100% - 30px);
-    padding-left: 16px;
+    padding-left: 24px;
     cursor: pointer;
   `,
 

@@ -50,7 +50,7 @@ export const maternityLeaveSteps: Step<MaternityLeaveFields>[] = [
       return {
         timePeriods: state.timePeriods.length
           ? state.timePeriods
-          : [{ startDate, endDate: addDays(startDate, DAYS_PER_MONTH * 3 - 1) }],
+          : [{ startDate, endDate: addDays(startDate, DAYS_PER_MONTH * 4 - 1) }],
       };
     },
   },

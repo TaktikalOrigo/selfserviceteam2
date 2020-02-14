@@ -11,7 +11,7 @@ import { compileStaticStylesheet } from "~/client/util/compileStaticStylesheet";
 import styles from "./Textfield.styles";
 import { getFieldError } from "~/common/util/form/getFieldError";
 import TextFieldIcon from "~/client/elements/TextfieldIcon";
-import { TextFieldInput } from "~/client/elements/TextfieldInput";
+import Input from "~/client/elements/Input";
 
 const DEFAULT_MARGIN_BOTTOM = 40;
 const DEFAULT_MESSAGE_MARGIN_BOTTOM = 16;
@@ -176,7 +176,7 @@ export const Textfield: React.FC<Props> = (props: Props) => {
               "icon-right": loading || showError || showSuccess,
             })}
           >
-            <TextFieldInput
+            <Input
               {...inputTypeToInputProps[type]}
               {...inputProps}
               value={getValue()}

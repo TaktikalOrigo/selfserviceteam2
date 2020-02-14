@@ -16,14 +16,15 @@ export default ({ css }: StyleParams) => ({
     width: 50px;
     height: 50px;
     flex-basis: 50px;
-    background: ${cssVariables.colorOffWhite};
+    background: white;
+    border: 2px solid ${cssVariables.colorOffWhite};
     border-radius: 50%;
     position: relative;
-    transition: background 0.3s;
+    transition: border 0.3s;
     transition-delay: 0.15s;
 
     &--active {
-      background: ${cssVariables.colorPrimary};
+      border: 2px solid ${cssVariables.colorPrimary};
     }
   `,
 
@@ -39,7 +40,7 @@ export default ({ css }: StyleParams) => ({
     transition-delay: 0.15s;
 
     &--active {
-      color: white;
+      color: ${cssVariables.colorPrimary};
     }
   `,
 
@@ -54,7 +55,7 @@ export default ({ css }: StyleParams) => ({
   bar: css`
     flex-basis: 32px;
     flex-grow: 1;
-    height: 8px;
+    height: 2px;
     border-radius: 4px;
     background: ${cssVariables.colorOffWhite};
     overflow: hidden;

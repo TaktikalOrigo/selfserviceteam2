@@ -16,6 +16,7 @@ interface Props extends MarginProps {
   heading?: 1 | 2 | 3 | 4 | 5 | 6;
   element?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
   align?: "left" | "center" | "right";
+  maxWidth?: number;
   children?: React.ReactNode;
 }
 
@@ -29,7 +30,10 @@ export const Title: React.FC<Props> = (props: Props) => {
   const s = useStylesheet(styles);
   return (
     <div className={s("wrapper", { [`align-${alignDirection}`]: true })}>
-      <Tag className={`${s("title", { [heading]: true })} ${marginClassName}`}>
+      <Tag
+        className={`${s("title", { [heading]: true })} ${marginClassName}`}
+        style={props.maxWidth ? { maxWidth: props.maxWidth } : {}}
+      >
         {props.children}
       </Tag>
     </div>

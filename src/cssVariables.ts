@@ -8,10 +8,10 @@ export const cssVariables = {
   borderRadiusNormal: "4px",
   colorPrimary: "#0061FF",
   colorOffWhite: "#F2F2F5",
-  colorBlack: "#474747",
+  colorBlack: "#121212",
   colorSuccess: "green",
   colorError: "#ff5468",
-  bodyFont: "sans-serif",
+  bodyFont: "'IBM Plex Sans', sans-serif",
   bezierSmooth: "0.46, 0.19, 0.13, 0.98",
 
   colorBorderFocus,
