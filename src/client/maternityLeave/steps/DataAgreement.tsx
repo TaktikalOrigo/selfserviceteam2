@@ -11,7 +11,7 @@ export const MaternityLeaveDataAgreement: React.FC<MaternityLeaveProps> = props 
 
   return (
     <CenteredWrapper>
-      <Title marginBottom={16}>Hæ Jóna,</Title>
+      <Title marginBottom={16}>Hæ {(props.fields.name || "").split(" ")[0]},</Title>
       <Text marginBottom={16} maxWidth={680}>
         Til þess að geta unnið umsóknina þá þurfum við að kynnast þér betur.
       </Text>

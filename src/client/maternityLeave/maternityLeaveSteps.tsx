@@ -6,6 +6,8 @@ import { MaternityLeaveDateOfBirth } from "~/client/maternityLeave/steps/DateOfB
 import { MaternityLeaveTimePeriods } from "~/client/maternityLeave/steps/TimePeriods";
 import { TimePeriod } from "~/types";
 import { DAYS_PER_MONTH } from "~/constants";
+import { MaternityLeaveConfirmation } from "~/client/maternityLeave/steps/Confirmation";
+import { MaternityLeaveComplete } from "~/client/maternityLeave/steps/Complete";
 
 export interface MaternityLeaveFields {
   name: string;
@@ -20,6 +22,8 @@ export interface MaternityLeaveFields {
   personalFundContribution: 0 | 2 | 4;
   monthsOfLeaveAvailable: number;
   timePeriods: TimePeriod[];
+  employerContactName: string;
+  employerContactEmail: string;
   hasEmployeeAccepted: boolean;
   hasGovernmentAccepted: boolean; // Vinnumálastofnun
 }
@@ -53,5 +57,14 @@ export const maternityLeaveSteps: Step<MaternityLeaveFields>[] = [
           : [{ startDate, endDate: addDays(startDate, DAYS_PER_MONTH * 4 - 1) }],
       };
     },
+  },
+  {
+    sectionName: "Staðfesting",
+    name: "confirmation",
+    component: MaternityLeaveConfirmation,
+  },
+  {
+    name: "complete",
+    component: MaternityLeaveComplete,
   },
 ];

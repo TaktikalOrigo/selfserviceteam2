@@ -22,6 +22,7 @@ const s = compileStaticStylesheet(styles);
 const masks: Partial<{ [key in TextFieldType]: Array<RegExp | string> }> = {
   phone: [/\d/, /\d/, /\d/, " ", /\d/, /\d/, /\d/, /\d/],
   ssn: [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, " ", /\d/, /\d/, /\d/, /\d/],
+  bankNumber: [/\d/, /\d/, /\d/, /\d/, "-", /\d/, /\d/, "-", /\d/, /\d/, /\d/, /\d/, /\d/, /\d/],
 };
 
 type ExtendProps = React.InputHTMLAttributes<HTMLInputElement> & MarginProps;

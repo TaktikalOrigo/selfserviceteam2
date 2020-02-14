@@ -38,7 +38,6 @@ export default ({ css, keyframes }: StyleParams) => {
       background-color: transparent;
       border: none;
       font-weight: 600;
-      letter-spacing: 1px;
       font-size: 16px;
       line-height: 1;
       border-radius: 4px;
