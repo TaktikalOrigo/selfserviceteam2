@@ -114,16 +114,8 @@ export const MaternityLeaveProgressNew: React.FC<Props> = props => {
       continue;
     }
 
-    console.log(i, progressSteps, props);
     const nextStepIndex =
       i === progressSteps.length - 1 ? props.steps.length - 1 : progressSteps[i + 1].index;
-    console.log({
-      progressStepsLength: progressSteps.length,
-      i,
-      stepsLength: props.steps.length,
-      nextStepIndex,
-      step,
-    });
 
     step.t = Math.max(
       0.05,
