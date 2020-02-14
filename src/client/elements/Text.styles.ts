@@ -1,5 +1,5 @@
 import { StyleParams } from "@taktikal/stylesheets";
-import { cssVariables } from "~/cssVariables";
+import { cssVariables, cssBreakpoints } from "~/cssVariables";
 
 export default ({ css }: StyleParams) => ({
   wrapper: css`
@@ -34,6 +34,10 @@ export default ({ css }: StyleParams) => ({
       font-size: 24px;
       font-weight: 400;
       line-height: 1.76;
+
+      @media (max-width: ${cssBreakpoints.maxXs}) {
+        font-size: 20px;
+      }
     }
   `,
 });
