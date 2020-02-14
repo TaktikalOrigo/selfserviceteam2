@@ -102,14 +102,7 @@ export default ({ css }: StyleParams) => ({
     display: inline-block;
     position: relative;
     z-index: 10;
-
-    &--2 {
-      width: 20%;
-    }
-
-    &--4 {
-      width: 40%;
-    }
+    width: 33.33333%;
   `,
 
   bar__separator: css`
