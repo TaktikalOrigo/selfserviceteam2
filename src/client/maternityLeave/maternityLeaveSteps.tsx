@@ -5,7 +5,7 @@ import { MaternityLeaveDataAgreement } from "~/client/maternityLeave/steps/DataA
 import { MaternityLeaveDateOfBirth } from "~/client/maternityLeave/steps/DateOfBirth";
 import { MaternityLeaveTimePeriods } from "~/client/maternityLeave/steps/TimePeriods";
 import { TimePeriod } from "~/types";
-import { DAYS_PER_MONTH } from "~/constants";
+import { DAYS_PER_MONTH, MONTHS_OF_MATERNITY_LEAVE_PER_PARENT } from "~/constants";
 import { MaternityLeaveConfirmation } from "~/client/maternityLeave/steps/Confirmation";
 import { MaternityLeaveComplete } from "~/client/maternityLeave/steps/Complete";
 import { CalendarIcon } from "~/client/icon/CalendarIcon";
@@ -61,7 +61,15 @@ export const maternityLeaveSteps: Step<MaternityLeaveFields>[] = [
       return {
         timePeriods: state.timePeriods.length
           ? state.timePeriods
-          : [{ startDate, endDate: addDays(startDate, DAYS_PER_MONTH * 4 - 1) }],
+          : [
+              {
+                startDate,
+                endDate: addDays(
+                  startDate,
+                  DAYS_PER_MONTH * MONTHS_OF_MATERNITY_LEAVE_PER_PARENT - 1,
+                ),
+              },
+            ],
       };
     },
   },

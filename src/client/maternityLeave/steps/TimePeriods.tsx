@@ -12,7 +12,11 @@ import { ErrorMessage } from "~/client/elements/ErrorMessage";
 import { Text } from "~/client/elements/Text";
 import { CalendarIcon } from "~/client/icon/CalendarIcon";
 import { TimePeriod } from "~/types";
-import { DAYS_PER_MONTH } from "~/constants";
+import {
+  DAYS_PER_MONTH,
+  MONTHS_OF_MATERNITY_LEAVE_PER_PARENT,
+  MONTHS_OF_SHARED_MATERNITY_LEAVE,
+} from "~/constants";
 import { CenteredWrapper } from "~/client/components/stepManager/CenteredWrapper";
 
 const s = compileStaticStylesheet(styles);
@@ -115,7 +119,7 @@ export const MaternityLeaveTimePeriods: React.FC<MaternityLeaveProps> = props =>
 
   const daysUsedAreInMonths = daysUsed % DAYS_PER_MONTH === 0;
   const usageIsAboveMaximum = daysUsed > daysAvailable;
-  const usageIsBelowMinimum = daysUsed < DAYS_PER_MONTH * 4;
+  const usageIsEmpty = daysUsed === 0;
 
   const acceptableDateEnd = addMonths(props.fields.expectedDateOfBirth!, 24);
   let timePeriodsExtendBeyondAcceptableRange = false;
@@ -147,7 +151,7 @@ export const MaternityLeaveTimePeriods: React.FC<MaternityLeaveProps> = props =>
       !daysUsedAreInMonths ||
       usageIsAboveMaximum ||
       timePeriodsExtendBeyondAcceptableRange ||
-      usageIsBelowMinimum ||
+      usageIsEmpty ||
       isAnyTimePeriodIncomplete
     ) {
       return;
@@ -164,7 +168,12 @@ export const MaternityLeaveTimePeriods: React.FC<MaternityLeaveProps> = props =>
 
   const usedMessage = constructUsedMessage(daysUsed);
 
-  const barT = Math.min(1, daysUsed / (DAYS_PER_MONTH * 10));
+  const barT = Math.min(
+    1,
+    daysUsed /
+      ((MONTHS_OF_MATERNITY_LEAVE_PER_PARENT * 2 + MONTHS_OF_SHARED_MATERNITY_LEAVE) *
+        DAYS_PER_MONTH),
+  );
 
   return (
     <CenteredWrapper>
@@ -182,22 +191,22 @@ export const MaternityLeaveTimePeriods: React.FC<MaternityLeaveProps> = props =>
       </Text>
       <div className={s("barContainer")}>
         <div
-          className={s("bar__filled", { error: usageIsAboveMaximum || usageIsBelowMinimum })}
+          className={s("bar__filled", { error: usageIsAboveMaximum || usageIsEmpty })}
           style={{ width: `${barT * 100}%` }}
         />
-        <div className={s("bar__wrapper", { 4: true })}>
+        <div className={s("bar__wrapper")}>
           <div className={s("bar__separator")} />
           <div className={s("bar__label")}>Þinn réttur</div>
-          <div className={s("bar__months")}>4 mánuðir</div>
+          <div className={s("bar__months")}>{MONTHS_OF_MATERNITY_LEAVE_PER_PARENT} mánuðir</div>
         </div>
-        <div className={s("bar__wrapper", { 2: true })}>
+        <div className={s("bar__wrapper")}>
           <div className={s("bar__separator")} />
           <div className={s("bar__label")}>Sameiginlegur réttur</div>
-          <div className={s("bar__months")}>2 mánuðir</div>
+          <div className={s("bar__months")}>{MONTHS_OF_SHARED_MATERNITY_LEAVE} mánuðir</div>
         </div>
-        <div className={s("bar__wrapper", { 4: true })}>
+        <div className={s("bar__wrapper")}>
           <div className={s("bar__label")}>Réttur maka</div>
-          <div className={s("bar__months")}>4 mánuðir</div>
+          <div className={s("bar__months")}>{MONTHS_OF_MATERNITY_LEAVE_PER_PARENT} mánuðir</div>
         </div>
       </div>
       {timePeriods.map((period, i) => {
@@ -286,7 +295,7 @@ export const MaternityLeaveTimePeriods: React.FC<MaternityLeaveProps> = props =>
         mögulegum
       </Text>
       <Button
-        disabled={usageIsAboveMaximum || isAnyTimePeriodIncomplete || usageIsBelowMinimum}
+        disabled={usageIsAboveMaximum || isAnyTimePeriodIncomplete || usageIsEmpty}
         primary
         onClick={onSubmit}
       >

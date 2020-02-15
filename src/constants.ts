@@ -50,3 +50,6 @@ export const inputTypeToInputProps: Partial<{ [key in TextFieldType]: MaskedInpu
 // Each months is defined as being 30 days. I'm not sure if this is the technically
 // correct way to go about this but I haven't found a better solution.
 export const DAYS_PER_MONTH = 30;
+
+export const MONTHS_OF_MATERNITY_LEAVE_PER_PARENT = 3;
+export const MONTHS_OF_SHARED_MATERNITY_LEAVE = 3;
