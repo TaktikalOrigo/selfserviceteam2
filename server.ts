@@ -9,6 +9,7 @@ import cookieParser from "cookie-parser";
 import compression from "compression";
 import { createProxyToDevClientServer } from "~/server/clientProxy/createProxyToDevClientServer";
 import { setApiRoutes } from "~/server/routes/router";
+import { connectRepository } from "~/server/repository/connectRepository";
 
 const dev = process.env.NODE_ENV !== "production";
 const port = (process.env.PORT && +process.env.PORT) || 8080;
@@ -17,8 +18,9 @@ const compileClient = dev ? process.env.SERVER_ONLY !== "true" : true;
 const app = compileClient ? nextjs({ dev }) : null;
 const handle = (app && app.getRequestHandler())!;
 
-(compileClient ? app!.prepare() : Promise.resolve()).then(() => {
+(compileClient ? app!.prepare() : Promise.resolve()).then(async () => {
   const server = express();
+  await connectRepository();
 
   server.use(bodyParser.json({ limit: "10mb" }));
   server.use(cookieParser());
