@@ -8,7 +8,9 @@ WORKDIR /usr/src/app
 # where available (npm@5+)
 COPY package*.json ./
 
+RUN echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
 RUN npm i
+RUN rm -f .npmrc
 
 # Bundle app source
 COPY . .

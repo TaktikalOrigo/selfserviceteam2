@@ -9,6 +9,7 @@ build_production:
   script:
     - docker login -u $AZURE_CR_USER -p $AZURE_CR_PASS taktikalcr.azurecr.io
     - docker build
+        --build-arg NPM_TOKEN
         -t taktikalcr.azurecr.io/selfserviceteam2:master .
     - docker push taktikalcr.azurecr.io/selfserviceteam2:master
   environment:
@@ -23,6 +24,8 @@ build_branch:
     - docker:dind
   stage: build
   script:
-    - docker build -t taktikalcr.azurecr.io/selfserviceteam2:test .
+    - docker build
+        --build-arg NPM_TOKEN
+        -t taktikalcr.azurecr.io/selfserviceteam2:test .
   except:
     - master
