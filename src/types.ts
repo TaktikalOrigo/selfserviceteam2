@@ -7,6 +7,11 @@ export type ReturnType<T> = T extends (...args: any[]) => infer R ? R : any;
 type SubtractKeys<T, U> = { [K in keyof T]: K extends keyof U ? never : K }[keyof T];
 export type Subtract<T, U> = { [K in SubtractKeys<T, U>]: T[K] };
 
+export interface ExpectedBirthDate {
+  ssn: string;
+  expectedBirthDate: string; // Date string
+}
+
 export interface TestPersonData {
   name: string;
   ssn: string;
@@ -16,6 +21,17 @@ export interface TestPersonData {
 }
 
 export interface MaternityData {
+  personalTaxBreakRate: number;
+  salary: number;
+  otherSalary: number;
+  pensionOptionalPercentage: number;
+  jobPercentage: number;
+  unionPercentage: number;
+  pensionPercentage: number;
+}
+
+export interface ApplicationData {
+  ssn: string;
   personalTaxBreakRate: number;
   salary: number;
   otherSalary: number;

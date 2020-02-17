@@ -7,7 +7,7 @@ import { darkenColor } from "~/client/util/color";
 
 const s = compileStaticStylesheet(({ css }) => ({
   container: css`
-    width: calc(960px + 64px);
+    width: calc(1400px + 64px);
     max-width: 100%;
     margin: 16px auto 0;
     padding: 0 32px;

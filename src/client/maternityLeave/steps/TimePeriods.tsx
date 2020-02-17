@@ -18,6 +18,7 @@ import {
   MONTHS_OF_SHARED_MATERNITY_LEAVE,
 } from "~/constants";
 import { CenteredWrapper } from "~/client/components/stepManager/CenteredWrapper";
+import formatCurrency from "~/client/util/formatCurrency";
 
 const s = compileStaticStylesheet(styles);
 const inputClassName = compileStaticStylesheet(inputStyles)("input");
@@ -177,7 +178,9 @@ export const MaternityLeaveTimePeriods: React.FC<MaternityLeaveProps> = props =>
 
   return (
     <CenteredWrapper>
-      <Title marginBottom={16}>Áætlaður réttur þinn er 360.000 kr. á mánuði</Title>
+      <Title marginBottom={16}>
+        Áætlaður réttur þinn er {formatCurrency(props.fields.estimationResult.total)} á mánuði
+      </Title>
       <Text marginBottom={40}>
         Miðað við 80% af stærsta tekjuþættinum frá viðkomandi fyrirtæki.
       </Text>

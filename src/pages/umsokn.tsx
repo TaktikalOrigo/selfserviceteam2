@@ -39,14 +39,23 @@ export default () => {
       </header>
       <StepManager
         initialFields={{
+          applications: [],
           ssn: "",
           name: "",
           email: "",
           phoneNumber: "",
           bankNumber: "",
+
+          estimationResult: null!,
+
+          jobPercentage: 100,
+          otherSalary: 0,
+          pensionPercentage: 0,
+          personalTaxBreakRate: 0,
+          salary: 0,
+          unionPercentage: 2.55,
+
           expectedDateOfBirth: null,
-          union: "",
-          pensionFund: "",
           personalFundContribution: 0,
           personalTaxCreditUsagePercent: 100,
           monthsOfLeaveAvailable: 0,
