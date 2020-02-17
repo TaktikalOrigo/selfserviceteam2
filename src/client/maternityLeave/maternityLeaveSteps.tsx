@@ -28,7 +28,6 @@ export interface MaternityLeaveFields {
   phoneNumber: string;
   bankNumber: string;
   expectedDateOfBirth: Date | null;
-  personalTaxCreditUsagePercent: number; // Do we use this?
 
   estimationResult: MaternityResults;
 

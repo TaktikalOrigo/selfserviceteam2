@@ -10,7 +10,7 @@ export const connectRepository = async () => {
     type: "postgres",
     url: getPrivateEnv("DB_URL"),
     port: 5432,
-    ssl: true,
+    ssl: false,
     synchronize: true,
     entities: [Application, Person, ApplicationTime],
   });

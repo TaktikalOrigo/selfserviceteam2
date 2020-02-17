@@ -101,10 +101,10 @@ export const MaternityLeaveInfo: React.FC<MaternityLeaveProps> = props => {
 
             <Textfield
               label="Hlutfall persónuafsláttar (%)"
-              value={props.fields.personalTaxCreditUsagePercent.toString()}
+              value={props.fields.personalTaxBreakRate.toString()}
               onChange={e => {
                 props.setFields({
-                  personalTaxCreditUsagePercent: Math.max(
+                  personalTaxBreakRate: Math.max(
                     0,
                     Math.min(100, parseInt(digits(e.target.value) || "0")),
                   ),
