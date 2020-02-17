@@ -8,7 +8,7 @@ import { Title } from "~/client/elements/Title";
 import { Text } from "~/client/elements/Text";
 import { isValueValid } from "~/common/util/form/getFieldError";
 import { ErrorMessage } from "~/client/elements/ErrorMessage";
-import { TestPersonData } from "~/types";
+import { PersonFields } from "~/types";
 import { digits } from "~/common/util/form/digits";
 import { CenteredWrapper } from "~/client/components/stepManager/CenteredWrapper";
 
@@ -26,8 +26,8 @@ export const MaternityLeaveAuth: React.FC<MaternityLeaveProps> = props => {
     setPending(true);
 
     try {
-      const { data, status } = await Axios.get<TestPersonData>(
-        `/api/testPerson/${digits(props.fields.ssn)}`,
+      const { data, status } = await Axios.get<PersonFields>(
+        `/api/person/${digits(props.fields.ssn)}`,
         {
           validateStatus: status => status === 200 || status === 404,
         },
@@ -46,6 +46,7 @@ export const MaternityLeaveAuth: React.FC<MaternityLeaveProps> = props => {
        */
       props.setFields({
         name: data.name,
+        ssn: data.ssn,
       });
 
       props.nextStep();

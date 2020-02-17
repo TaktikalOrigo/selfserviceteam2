@@ -20,7 +20,7 @@ const create = async () => {
     type: "postgres",
     url: getPrivateEnv("DB_URL"),
     port: 5432,
-    ssl: true,
+    ssl: getPrivateEnv("DB_USE_SSL") === "true",
     synchronize: true,
     entities: [Application, Person, ApplicationTime],
   });

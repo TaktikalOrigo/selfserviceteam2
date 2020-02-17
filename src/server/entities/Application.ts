@@ -37,25 +37,25 @@ export class Application extends BaseEntity {
   @UpdateDateColumn()
   updatedAt!: Date;
 
-  @Column()
+  @Column("float")
   personalTaxBreakRate!: number;
 
-  @Column()
+  @Column("int")
   salary!: number;
 
-  @Column()
+  @Column("int")
   otherSalary!: number;
 
-  @Column()
+  @Column("float")
   pensionOptionalPercentage!: number;
 
-  @Column()
+  @Column("float")
   jobPercentage!: number;
 
-  @Column()
+  @Column("float")
   unionPercentage!: number;
 
-  @Column()
+  @Column("float")
   pensionPercentage!: number;
 
   @Column()

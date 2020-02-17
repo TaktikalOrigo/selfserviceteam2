@@ -10,6 +10,7 @@ export enum PublicEnv {
 export enum PrivateEnv {
   ENVIRONMENT = "ENVIRONMENT",
   DB_URL = "DB_URL",
+  DB_USE_SSL = "DB_USE_SSL",
 }
 
 export type TextFieldType = "text" | "email" | "phone" | "ssn" | "bankNumber";

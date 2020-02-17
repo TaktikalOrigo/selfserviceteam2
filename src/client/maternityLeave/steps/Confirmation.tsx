@@ -14,6 +14,8 @@ import { Title } from "~/client/elements/Title";
 import { Text } from "~/client/elements/Text";
 import { Button } from "~/client/elements/Button";
 import { isValueValid } from "~/common/util/form/getFieldError";
+import Axios from "axios";
+import { ApplicationFields } from "~/types";
 
 const isAllInfoValid = (fields: MaternityLeaveFields): boolean => {
   if (!fields.name || !fields.email) {
@@ -46,9 +48,27 @@ export const MaternityLeaveConfirmation: React.FC<MaternityLeaveProps> = props =
 
   const [hasAttemptedToSubmit, setHasAttemptedToSubmit] = useState(false);
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     if (!allInfoValid) {
       setHasAttemptedToSubmit(true);
+      return;
+    }
+
+    try {
+      const body: ApplicationFields = {
+        applicationTimes: props.fields.timePeriods as any,
+        expectedDate: props.fields.expectedDateOfBirth!,
+        jobPercentage: props.fields.jobPercentage,
+        otherSalary: props.fields.otherSalary,
+        pensionOptionalPercentage: props.fields.personalFundContribution,
+        pensionPercentage: props.fields.pensionPercentage,
+        personalTaxBreakRate: props.fields.personalTaxBreakRate,
+        salary: props.fields.salary,
+        unionPercentage: props.fields.unionPercentage,
+      };
+      await Axios.post(`/api/person/${props.fields.ssn}/application`, body);
+    } catch (e) {
+      console.error(e);
       return;
     }
 

@@ -10,4 +10,5 @@ export const defaultEnv: { [key in keyof (typeof PublicEnv & typeof PrivateEnv)]
   SITE_URL: "http://localhost:8080",
   DB_URL:
     "postgresql://sdfjsadfj0@selfserviceteam2:ZIPT_ract9rars@selfserviceteam2.postgres.database.azure.com/selfserviceteam2",
+  DB_USE_SSL: "true",
 };
