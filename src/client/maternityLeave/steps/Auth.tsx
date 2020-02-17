@@ -74,7 +74,7 @@ export const MaternityLeaveAuth: React.FC<MaternityLeaveProps> = props => {
           type="ssn"
           value={props.fields.ssn}
           onChange={e => !pending && props.setFields({ ssn: e.target.value })}
-          placeholder="000000 0000"
+          placeholder="00000000 0000"
           marginBottom={48}
           maxWidth={240}
         />

@@ -37,7 +37,7 @@ export const inputTypeToInputProps: Partial<{ [key in TextFieldType]: MaskedInpu
   },
   ssn: {
     name: "kennitala",
-    mask: [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, " ", /\d/, /\d/, /\d/, /\d/],
+    mask: [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, " ", /\d/, /\d/, /\d/, /\d/],
     type: "text",
     inputMode: "numeric",
   },
