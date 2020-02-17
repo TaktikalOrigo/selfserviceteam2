@@ -1,8 +1,5 @@
 FROM node:carbon
 
-ARG NPM_TOKEN
-ENV NPM_TOKEN=$NPM_TOKEN
-
 # Create app directory
 WORKDIR /usr/src/app
 
@@ -11,10 +8,7 @@ WORKDIR /usr/src/app
 # where available (npm@5+)
 COPY package*.json ./
 
-RUN touch .npmrc
-RUN printf //registry.npmjs.org/:_authToken=${NPM_TOKEN} > .npmrc
 RUN npm i
-RUN rm -f .npmrc
 
 # Bundle app source
 COPY . .
