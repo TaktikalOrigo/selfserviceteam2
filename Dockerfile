@@ -1,5 +1,8 @@
 FROM node:carbon
 
+ARG NPM_TOKEN
+ENV NPM_TOKEN=$NPM_TOKEN
+
 # Create app directory
 WORKDIR /usr/src/app
 
