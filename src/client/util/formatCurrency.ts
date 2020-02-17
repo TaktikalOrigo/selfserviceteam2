@@ -1,5 +1,4 @@
 // IE doesn’t have trunc.
-// tslint:disable-next-line:only-arrow-functions
 Math.trunc =
   Math.trunc ||
   function(x) {
@@ -12,7 +11,7 @@ Math.trunc =
     return Math.ceil(x);
   };
 
-// (5000000, ",") => 5,000,000
+// (5000000.5, ",", ".") => 5,000,000.5
 function withDecimals(amount: number, decimal = ".", thousands = ",") {
   const absValue = Math.trunc(amount);
   const decimalValue = amount - absValue;
@@ -33,7 +32,6 @@ function withDecimals(amount: number, decimal = ".", thousands = ",") {
 
 const formatters = {
   isk: (amount: number) => `${withDecimals(amount)} kr.`,
-  // [Currency.USD]: amount => `$${withDecimals(amount, ",")}`,
 };
 
 export default function formatCurrency(
