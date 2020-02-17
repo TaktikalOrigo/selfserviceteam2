@@ -6,7 +6,7 @@ const styles = ({ css }: StyleParams) => ({
   container: css`
     min-height: calc(100vh - ${HEADER_HEIGHT + 42}px);
     margin: 0 auto;
-    width: 1400px;
+    width: 960px;
     max-width: 100%;
     display: flex;
     flex-direction: column;
