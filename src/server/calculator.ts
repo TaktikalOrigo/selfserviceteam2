@@ -52,7 +52,7 @@ function getTotalTax(data: MaternityData, paymentBeforeSub: number): number {
 }
 
 function getPaymentBeforeSub(data: MaternityData): number {
-  const tekjur = Math.max(data.salary, data.otherSalary);
+  const tekjur = data.salary + data.otherSalary;
   let tekjur80 = tekjur * 0.8;
 
   if (tekjur80 > maxPayment) {
