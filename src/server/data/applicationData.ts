@@ -2,7 +2,7 @@ import { ApplicationData } from "~/types";
 
 export const applicationData: ApplicationData[] = [
   {
-    ssn: "1667080771",
+    ssn: "166708077158",
     personalTaxBreakRate: 0,
     salary: 465654,
     otherSalary: 0,
@@ -12,7 +12,7 @@ export const applicationData: ApplicationData[] = [
     pensionPercentage: 4,
   },
   {
-    ssn: "1695060771",
+    ssn: "169506077198",
     personalTaxBreakRate: 50,
     salary: 574051,
     otherSalary: 50000,
@@ -22,7 +22,7 @@ export const applicationData: ApplicationData[] = [
     pensionPercentage: 4,
   },
   {
-    ssn: "1629013080",
+    ssn: "162901308052",
     personalTaxBreakRate: 100,
     salary: 474171,
     otherSalary: 100000,
@@ -32,7 +32,7 @@ export const applicationData: ApplicationData[] = [
     pensionPercentage: 4,
   },
   {
-    ssn: "1642080763",
+    ssn: "164208076325",
     personalTaxBreakRate: 0,
     salary: 534492,
     otherSalary: 150000,
@@ -42,7 +42,7 @@ export const applicationData: ApplicationData[] = [
     pensionPercentage: 4,
   },
   {
-    ssn: "1619020354",
+    ssn: "161902035482",
     personalTaxBreakRate: 50,
     salary: 449061,
     otherSalary: 200000,
@@ -52,7 +52,7 @@ export const applicationData: ApplicationData[] = [
     pensionPercentage: 4,
   },
   {
-    ssn: "1662080190",
+    ssn: "166208019007",
     personalTaxBreakRate: 100,
     salary: 468345,
     otherSalary: 0,
@@ -62,7 +62,7 @@ export const applicationData: ApplicationData[] = [
     pensionPercentage: 4,
   },
   {
-    ssn: "1673021101",
+    ssn: "167302110163",
     personalTaxBreakRate: 0,
     salary: 421973,
     otherSalary: 50000,
@@ -72,7 +72,7 @@ export const applicationData: ApplicationData[] = [
     pensionPercentage: 4,
   },
   {
-    ssn: "1629063003",
+    ssn: "162906300369",
     personalTaxBreakRate: 50,
     salary: 501909,
     otherSalary: 100000,
@@ -82,7 +82,7 @@ export const applicationData: ApplicationData[] = [
     pensionPercentage: 4,
   },
   {
-    ssn: "1613011751",
+    ssn: "161301175129",
     personalTaxBreakRate: 100,
     salary: 538902,
     otherSalary: 150000,
@@ -92,7 +92,7 @@ export const applicationData: ApplicationData[] = [
     pensionPercentage: 4,
   },
   {
-    ssn: "1677090411",
+    ssn: "167709041193",
     personalTaxBreakRate: 0,
     salary: 481503,
     otherSalary: 200000,
@@ -102,7 +102,7 @@ export const applicationData: ApplicationData[] = [
     pensionPercentage: 4,
   },
   {
-    ssn: "1618031594",
+    ssn: "161803159456",
     personalTaxBreakRate: 50,
     salary: 665711,
     otherSalary: 0,
@@ -112,7 +112,7 @@ export const applicationData: ApplicationData[] = [
     pensionPercentage: 4,
   },
   {
-    ssn: "1603122283",
+    ssn: "160312228315",
     personalTaxBreakRate: 100,
     salary: 519074,
     otherSalary: 50000,
@@ -122,7 +122,7 @@ export const applicationData: ApplicationData[] = [
     pensionPercentage: 4,
   },
   {
-    ssn: "1616041953",
+    ssn: "161604195378",
     personalTaxBreakRate: 0,
     salary: 569305,
     otherSalary: 100000,
@@ -142,7 +142,7 @@ export const applicationData: ApplicationData[] = [
     pensionPercentage: 4,
   },
   {
-    ssn: "1673013056",
+    ssn: "167301305681",
     personalTaxBreakRate: 100,
     salary: 522849,
     otherSalary: 200000,
@@ -152,7 +152,7 @@ export const applicationData: ApplicationData[] = [
     pensionPercentage: 4,
   },
   {
-    ssn: "1602022264",
+    ssn: "160202226460",
     personalTaxBreakRate: 0,
     salary: 590476,
     otherSalary: 0,
@@ -162,7 +162,7 @@ export const applicationData: ApplicationData[] = [
     pensionPercentage: 4,
   },
   {
-    ssn: "1698041383",
+    ssn: "169804138353",
     personalTaxBreakRate: 50,
     salary: 464688,
     otherSalary: 50000,
@@ -182,7 +182,7 @@ export const applicationData: ApplicationData[] = [
     pensionPercentage: 4,
   },
   {
-    ssn: "1623071341",
+    ssn: "162307134177",
     personalTaxBreakRate: 0,
     salary: 421711,
     otherSalary: 150000,

@@ -16,7 +16,12 @@ export const handleGetPerson: Handler = async (req, res) => {
       },
     });
 
-    res.status(200).json(person);
+    if (!person) {
+      res.sendStatus(404);
+      return;
+    }
+
+    res.json(person);
   } catch (e) {
     const [err] = handleError(e);
     err.pipe(res);

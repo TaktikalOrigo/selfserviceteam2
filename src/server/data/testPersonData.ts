@@ -1,145 +1,9 @@
-import { TestPersonData, PersonFields } from "~/types";
-
-export const testPersonList: TestPersonData[] = [
-  {
-    name: "Ivory Y. Reese",
-    ssn: "1641052434",
-    address: "1082 Felis. St.",
-    spouseName: "Samson Raymond",
-    spouseSsn: "1655090426",
-  },
-  {
-    name: "Bruce Q. Wiggins",
-    ssn: "1618031594",
-    address: "Ap #232-8701 Rutrum\\, St.,Paula L. Moreno",
-    spouseName: "Paula L. Moreno",
-    spouseSsn: "1623071341",
-  },
-  {
-    name: "Stacey O. Patrick",
-    ssn: "1681120745",
-    address: "Ap #857-8375 Et\\, Av.",
-    spouseName: "Ocean N. Gay",
-    spouseSsn: "1626031641",
-  },
-  {
-    name: "Paula L. Moreno",
-    ssn: "1623071341",
-    address: "Ap #232-8701 Rutrum\\, St.",
-    spouseName: "Bruce Q. Wiggins",
-    spouseSsn: "1618031594",
-  },
-  {
-    name: "Caleb O. Mccarthy",
-    ssn: "1643011715",
-    address: "377-8970 Vitae Rd.",
-    spouseName: "Hermione W. Mcfarland",
-    spouseSsn: "1642080763",
-  },
-  {
-    name: "Allegra E. Sandoval",
-    ssn: "1699061163",
-    address: "P.O. Box 641\\, 4574 Erat\\, Rd.",
-    spouseName: "Seth Tyler",
-    spouseSsn: "1630010356",
-  },
-  {
-    name: "Vielka L. Hernandez",
-    ssn: "1667080771",
-    address: "P.O. Box 157\\, 6293 Vulputate\\, Street",
-    spouseName: "Joseph Gordon",
-    spouseSsn: "1612100972",
-  },
-  {
-    name: "Aiko H. Johnson",
-    ssn: "1601051053",
-    address: "638-2380 Turpis Road",
-    spouseName: "Keefe Hoffman",
-    spouseSsn: "1684112130",
-  },
-  {
-    name: "Hedley G. Calderon",
-    ssn: "1652031773",
-    address: "726-7435 Mauris St.",
-    spouseName: "Bernard Wise",
-    spouseSsn: "1676122261",
-  },
-  {
-    name: "Zenia B. Albert",
-    ssn: "1611060933",
-    address: "1146 Semper St.",
-    spouseName: "Daniel Vinson",
-    spouseSsn: "1657022243",
-  },
-  {
-    name: "Ocean N. Gray",
-    ssn: "1626031641",
-    address: "715-8487 Odio Rd.",
-    spouseName: "Stacey O. Patrick",
-    spouseSsn: "1681120745",
-  },
-  {
-    name: "Whilemina D. Cruz",
-    ssn: "1687100653",
-    address: "161-1241 Mollis Rd.",
-    spouseName: "Michael Bolton",
-    spouseSsn: "1642080389",
-  },
-  {
-    name: "Inez Q. Pope",
-    ssn: "1629040667",
-    address: "Ap #641-1757 Ut Av.",
-    spouseName: "Nigela Mcmillan",
-    spouseSsn: "1637011128",
-  },
-  {
-    name: "Pamela D. Chang",
-    ssn: "1697091530",
-    address: "2339 Lorem Av.",
-    spouseName: "Rashad Kane",
-    spouseSsn: "1608050270",
-  },
-  {
-    name: "Guinevere R. Farrell",
-    ssn: "1690082008",
-    address: "769-7373 Vitae\\, St.",
-    spouseName: "Xavier Madden",
-    spouseSsn: "1689071850",
-  },
-  {
-    name: "Kaitlin J. May",
-    ssn: "1660122640",
-    address: "P.O. Box 383, 5321 Donec Street",
-    spouseName: "Elliott Burch",
-    spouseSsn: "1698020867",
-  },
-  {
-    name: "Pascale B. Hull",
-    ssn: "1686030342",
-    address: "Ap #245-4878 Et Avenue",
-    spouseName: "Raja Avery",
-    spouseSsn: "1641053049",
-  },
-  {
-    name: "Hermione W. Mcfarland",
-    ssn: "1642080763",
-    address: "377-8970 Vitae Rd.",
-    spouseName: "Calab O. Mccarthy",
-    spouseSsn: "1643011715",
-  },
-  {
-    name: "Lani O. Ward",
-    ssn: "1672011757",
-    address: "P.O. Box 597\\, 7147 Euismod Av.",
-    spouseName: "Norman Mccarty",
-    spouseSsn: "1636112767",
-  },
-];
+import { PersonFields } from "~/types";
 
 export const testDataPersonList: PersonFields[] = [
   {
     name: "Ivory Y. Reese",
-    ssn: "1641052434",
+    ssn: "164105243424",
     address: "1082 Felis. St.",
     spouseName: "Samson Raymond",
     spouseSsn: "1655090426",
@@ -147,7 +11,7 @@ export const testDataPersonList: PersonFields[] = [
   },
   {
     name: "Bruce Q. Wiggins",
-    ssn: "1618031594",
+    ssn: "161803159456",
     address: "Ap #232-8701 Rutrum\\, St.,Paula L. Moreno",
     spouseName: "Paula L. Moreno",
     spouseSsn: "1623071341",
@@ -155,7 +19,7 @@ export const testDataPersonList: PersonFields[] = [
   },
   {
     name: "Stacey O. Patrick",
-    ssn: "1681120745",
+    ssn: "168112074540",
     address: "Ap #857-8375 Et\\, Av.",
     spouseName: "Ocean N. Gay",
     spouseSsn: "1626031641",
@@ -163,7 +27,7 @@ export const testDataPersonList: PersonFields[] = [
   },
   {
     name: "Paula L. Moreno",
-    ssn: "1623071341",
+    ssn: "162307134177",
     address: "Ap #232-8701 Rutrum\\, St.",
     spouseName: "Bruce Q. Wiggins",
     spouseSsn: "1618031594",
@@ -171,7 +35,7 @@ export const testDataPersonList: PersonFields[] = [
   },
   {
     name: "Caleb O. Mccarthy",
-    ssn: "1643011715",
+    ssn: "164301171502",
     address: "377-8970 Vitae Rd.",
     spouseName: "Hermione W. Mcfarland",
     spouseSsn: "1642080763",
@@ -179,7 +43,7 @@ export const testDataPersonList: PersonFields[] = [
   },
   {
     name: "Allegra E. Sandoval",
-    ssn: "1699061163",
+    ssn: "169906116315",
     address: "P.O. Box 641\\, 4574 Erat\\, Rd.",
     spouseName: "Seth Tyler",
     spouseSsn: "1630010356",
@@ -187,7 +51,7 @@ export const testDataPersonList: PersonFields[] = [
   },
   {
     name: "Vielka L. Hernandez",
-    ssn: "1667080771",
+    ssn: "166708077158",
     address: "P.O. Box 157\\, 6293 Vulputate\\, Street",
     spouseName: "Joseph Gordon",
     spouseSsn: "1612100972",
@@ -195,7 +59,7 @@ export const testDataPersonList: PersonFields[] = [
   },
   {
     name: "Aiko H. Johnson",
-    ssn: "1601051053",
+    ssn: "160105105340",
     address: "638-2380 Turpis Road",
     spouseName: "Keefe Hoffman",
     spouseSsn: "1684112130",
@@ -203,7 +67,7 @@ export const testDataPersonList: PersonFields[] = [
   },
   {
     name: "Hedley G. Calderon",
-    ssn: "1652031773",
+    ssn: "165203177315",
     address: "726-7435 Mauris St.",
     spouseName: "Bernard Wise",
     spouseSsn: "1676122261",
@@ -211,7 +75,7 @@ export const testDataPersonList: PersonFields[] = [
   },
   {
     name: "Zenia B. Albert",
-    ssn: "1611060933",
+    ssn: "161106093303",
     address: "1146 Semper St.",
     spouseName: "Daniel Vinson",
     spouseSsn: "1657022243",
@@ -219,7 +83,7 @@ export const testDataPersonList: PersonFields[] = [
   },
   {
     name: "Ocean N. Gray",
-    ssn: "1626031641",
+    ssn: "162603164134",
     address: "715-8487 Odio Rd.",
     spouseName: "Stacey O. Patrick",
     spouseSsn: "1681120745",
@@ -227,7 +91,7 @@ export const testDataPersonList: PersonFields[] = [
   },
   {
     name: "Whilemina D. Cruz",
-    ssn: "1687100653",
+    ssn: "168710065395",
     address: "161-1241 Mollis Rd.",
     spouseName: "Michael Bolton",
     spouseSsn: "1642080389",
@@ -235,7 +99,7 @@ export const testDataPersonList: PersonFields[] = [
   },
   {
     name: "Inez Q. Pope",
-    ssn: "1629040667",
+    ssn: "162904066798",
     address: "Ap #641-1757 Ut Av.",
     spouseName: "Nigela Mcmillan",
     spouseSsn: "1637011128",
@@ -243,7 +107,7 @@ export const testDataPersonList: PersonFields[] = [
   },
   {
     name: "Pamela D. Chang",
-    ssn: "1697091530",
+    ssn: "169709153028",
     address: "2339 Lorem Av.",
     spouseName: "Rashad Kane",
     spouseSsn: "1608050270",
@@ -251,7 +115,7 @@ export const testDataPersonList: PersonFields[] = [
   },
   {
     name: "Guinevere R. Farrell",
-    ssn: "1690082008",
+    ssn: "169008200892",
     address: "769-7373 Vitae\\, St.",
     spouseName: "Xavier Madden",
     spouseSsn: "1689071850",
@@ -259,7 +123,7 @@ export const testDataPersonList: PersonFields[] = [
   },
   {
     name: "Kaitlin J. May",
-    ssn: "1660122640",
+    ssn: "166012264005",
     address: "P.O. Box 383, 5321 Donec Street",
     spouseName: "Elliott Burch",
     spouseSsn: "1698020867",
@@ -267,7 +131,7 @@ export const testDataPersonList: PersonFields[] = [
   },
   {
     name: "Pascale B. Hull",
-    ssn: "1686030342",
+    ssn: "168603034250",
     address: "Ap #245-4878 Et Avenue",
     spouseName: "Raja Avery",
     spouseSsn: "1641053049",
@@ -275,7 +139,7 @@ export const testDataPersonList: PersonFields[] = [
   },
   {
     name: "Hermione W. Mcfarland",
-    ssn: "1642080763",
+    ssn: "164208076325",
     address: "377-8970 Vitae Rd.",
     spouseName: "Calab O. Mccarthy",
     spouseSsn: "1643011715",
@@ -283,7 +147,7 @@ export const testDataPersonList: PersonFields[] = [
   },
   {
     name: "Lani O. Ward",
-    ssn: "1672011757",
+    ssn: "167201175770",
     address: "P.O. Box 597\\, 7147 Euismod Av.",
     spouseName: "Norman Mccarty",
     spouseSsn: "1636112767",

@@ -2,123 +2,123 @@ import { ExpectedBirthDate } from "~/types";
 
 export const expectedBirthDates: ExpectedBirthDate[] = [
   {
-    ssn: "1601051053",
+    ssn: "160105105340",
     expectedBirthDate: "2020-05-14T00:00:00.000Z",
   },
   {
-    ssn: "1608050270",
+    ssn: "160805027091",
     expectedBirthDate: "2020-07-18T00:00:00.000Z",
   },
   {
-    ssn: "1611060933",
+    ssn: "161106093303",
     expectedBirthDate: "2020-06-23T00:00:00.000Z",
   },
   {
-    ssn: "1612100972",
+    ssn: "161210097240",
     expectedBirthDate: "2020-07-30T00:00:00.000Z",
   },
   {
-    ssn: "1618031594",
+    ssn: "161803159456",
     expectedBirthDate: "2020-05-02T00:00:00.000Z",
   },
   {
-    ssn: "1623071341",
+    ssn: "162307134177",
     expectedBirthDate: "2020-05-02T00:00:00.000Z",
   },
   {
-    ssn: "1626031641",
+    ssn: "162603164134",
     expectedBirthDate: "2020-05-14T00:00:00.000Z",
   },
   {
-    ssn: "1629040667",
+    ssn: "162904066798",
     expectedBirthDate: "2020-06-16T00:00:00.000Z",
   },
   {
-    ssn: "1630010356",
+    ssn: "163001035603",
     expectedBirthDate: "2020-07-28T00:00:00.000Z",
   },
   {
-    ssn: "1636112767",
+    ssn: "163611276795",
     expectedBirthDate: "2020-06-06T00:00:00.000Z",
   },
   {
-    ssn: "1637011128",
+    ssn: "163701112892",
     expectedBirthDate: "2020-06-16T00:00:00.000Z",
   },
   {
-    ssn: "1641052434",
+    ssn: "164105243424",
     expectedBirthDate: "2020-07-29T00:00:00.000Z",
   },
   {
-    ssn: "1642080389",
+    ssn: "164208038952",
     expectedBirthDate: "2020-07-11T00:00:00.000Z",
   },
   {
-    ssn: "1642080763",
+    ssn: "164208076325",
     expectedBirthDate: "2020-05-28T00:00:00.000Z",
   },
   {
-    ssn: "1643011715",
+    ssn: "164301171502",
     expectedBirthDate: "2020-05-28T00:00:00.000Z",
   },
   {
-    ssn: "1652031773",
+    ssn: "165203177315",
     expectedBirthDate: "2020-05-21T00:00:00.000Z",
   },
   {
-    ssn: "1655090426",
+    ssn: "165509042627",
     expectedBirthDate: "2020-07-29T00:00:00.000Z",
   },
   {
-    ssn: "1657022243",
+    ssn: "165702224360",
     expectedBirthDate: "2020-06-23T00:00:00.000Z",
   },
   {
-    ssn: "1660122640",
+    ssn: "166012264005",
     expectedBirthDate: "2020-07-20T00:00:00.000Z",
   },
   {
-    ssn: "1667080771",
+    ssn: "166708077158",
     expectedBirthDate: "2020-07-30T00:00:00.000Z",
   },
   {
-    ssn: "1672011757",
+    ssn: "167201175770",
     expectedBirthDate: "2020-06-06T00:00:00.000Z",
   },
   {
-    ssn: "1676122261",
+    ssn: "167612226188",
     expectedBirthDate: "2020-05-21T00:00:00.000Z",
   },
   {
-    ssn: "1681120745",
+    ssn: "168112074540",
     expectedBirthDate: "2020-05-14T00:00:00.000Z",
   },
   {
-    ssn: "1684112130",
+    ssn: "168411213088",
     expectedBirthDate: "2020-05-14T00:00:00.000Z",
   },
   {
-    ssn: "1687100653",
+    ssn: "168710065395",
     expectedBirthDate: "2020-07-11T00:00:00.000Z",
   },
   {
-    ssn: "1689071850",
+    ssn: "168907185055",
     expectedBirthDate: "2020-05-30T00:00:00.000Z",
   },
   {
-    ssn: "1690082008",
+    ssn: "169008200892",
     expectedBirthDate: "2020-05-30T00:00:00.000Z",
   },
   {
-    ssn: "1697091530",
+    ssn: "169709153028",
     expectedBirthDate: "2020-07-18T00:00:00.000Z",
   },
   {
-    ssn: "1698020867",
+    ssn: "169802086752",
     expectedBirthDate: "2020-07-20T00:00:00.000Z",
   },
   {
-    ssn: "1699061163",
+    ssn: "169906116315",
     expectedBirthDate: "2020-07-28T00:00:00.000Z",
   },
 ];
