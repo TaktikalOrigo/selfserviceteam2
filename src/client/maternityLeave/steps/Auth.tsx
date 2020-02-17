@@ -8,7 +8,7 @@ import { Title } from "~/client/elements/Title";
 import { Text } from "~/client/elements/Text";
 import { isValueValid } from "~/common/util/form/getFieldError";
 import { ErrorMessage } from "~/client/elements/ErrorMessage";
-import { TestPersonData, PersonFields } from "~/types";
+import { PersonFields } from "~/types";
 import { digits } from "~/common/util/form/digits";
 import { CenteredWrapper } from "~/client/components/stepManager/CenteredWrapper";
 
