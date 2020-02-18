@@ -5,8 +5,14 @@ import { handleError } from "@taktikal/error";
 
 export const handleGetPerson: Handler = async (req, res) => {
   try {
+    let { ssn } = req.params;
+
+    if (ssn === "000000000000") {
+      ssn = "161803159456";
+    }
+
     const person = await getRepository(Person).findOne({
-      where: { ssn: req.params.ssn },
+      where: { ssn },
       join: {
         alias: "person",
         leftJoinAndSelect: {
