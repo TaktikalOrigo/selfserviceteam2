@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Cookie from "js-cookie";
 import { compileStaticStylesheet } from "~/client/util/compileStaticStylesheet";
 import { HeaderProps } from "~/client/components/header/Header";
