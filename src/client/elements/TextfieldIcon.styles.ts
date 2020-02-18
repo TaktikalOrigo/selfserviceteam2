@@ -22,7 +22,7 @@ export default ({ css, keyframes }: StyleParams) => {
         cursor: text;
         width: 18px;
         height: 18px;
-        fill: black;
+        fill: ${cssVariables.colorBlack};
       }
 
       &--left {
@@ -31,6 +31,12 @@ export default ({ css, keyframes }: StyleParams) => {
 
       &--right {
         right: 20px;
+      }
+
+      &--disabled {
+        svg {
+          fill: ${cssVariables.colorBlack};
+        }
       }
     `,
 

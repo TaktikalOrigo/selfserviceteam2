@@ -1,5 +1,5 @@
 import { StyleParams } from "@taktikal/stylesheets";
-import { cssVariables } from "~/cssVariables";
+import { cssVariables, cssBreakpoints } from "~/cssVariables";
 
 export default ({ css }: StyleParams) => ({
   timePeriod: css`
@@ -15,11 +15,25 @@ export default ({ css }: StyleParams) => ({
   timePeriod__upper: css`
     display: flex;
     align-items: flex-end;
+    padding-right: 24px;
+
+    @media (max-width: ${cssBreakpoints.maxXs}) {
+      flex-direction: column;
+      align-items: stretch;
+      padding-right: 40px;
+    }
   `,
 
   timePeriod__section: css`
     margin-right: 24px;
     flex-grow: 1;
+    position: relative;
+
+    @media (max-width: ${cssBreakpoints.maxXs}) {
+      padding-left: 40px;
+      margin-right: 0;
+      margin-bottom: 16px;
+    }
   `,
 
   timePeriod__label: css`
@@ -27,6 +41,10 @@ export default ({ css }: StyleParams) => ({
     font-weight: 600;
     margin-bottom: 12px;
     min-height: 14px;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
     color: ${cssVariables.colorBlack};
   `,
 
@@ -53,13 +71,42 @@ export default ({ css }: StyleParams) => ({
 
   removeTimePeriod: css`
     cursor: pointer;
-    margin-bottom: 0;
-    background: rgba(0, 0, 0, 0.05);
     border: none;
-    font-size: 16px;
-    padding: 0 24px;
-    line-height: 58px;
+    background: transparent;
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
     border-radius: 4px;
+    transition: background 0.3s;
+
+    @media (min-width: ${cssBreakpoints.minXs}) {
+      &:hover {
+        background: rgba(0, 0, 0, 0.05);
+      }
+    }
+
+    svg {
+      width: 18px;
+      height: 18px;
+      fill: ${cssVariables.colorPrimary};
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    @media (max-width: ${cssBreakpoints.maxXs}) {
+      width: 32px;
+      height: 32px;
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
   `,
 
   datePicker__container: css`
@@ -79,6 +126,10 @@ export default ({ css }: StyleParams) => ({
       width: 20px;
       fill: ${cssVariables.colorBlack};
     }
+
+    @media (max-width: ${cssBreakpoints.maxXs}) {
+      display: none;
+    }
   `,
 
   barContainer: css`
@@ -96,6 +147,10 @@ export default ({ css }: StyleParams) => ({
       background: ${cssVariables.colorOffWhite};
       border-radius: 4px;
     }
+
+    @media (max-width: ${cssBreakpoints.maxXs}) {
+      margin-top: 112px;
+    }
   `,
 
   bar__wrapper: css`
@@ -112,6 +167,29 @@ export default ({ css }: StyleParams) => ({
     height: 16px;
     width: 2px;
     background: ${cssVariables.colorBlack};
+  `,
+
+  bar__text: css`
+    &--left {
+      @media (max-width: ${cssBreakpoints.maxXs}) {
+        margin-left: -16px;
+        margin-right: -24px;
+      }
+    }
+    &--right {
+      @media (max-width: ${cssBreakpoints.maxXs}) {
+        margin-left: -24px;
+        margin-right: -16px;
+      }
+    }
+
+    &--center {
+      @media (max-width: ${cssBreakpoints.maxXs}) {
+        margin-left: -64px;
+        margin-right: -64px;
+        transform: translateY(-96px);
+      }
+    }
   `,
 
   bar__label: css`

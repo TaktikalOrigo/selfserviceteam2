@@ -19,6 +19,9 @@ import {
 } from "~/constants";
 import { CenteredWrapper } from "~/client/components/stepManager/CenteredWrapper";
 import formatCurrency from "~/client/util/formatCurrency";
+import { TrashIcon } from "~/client/icon/TrashIcon";
+import { useBreakpoint } from "~/client/hooks/useBreakpoint";
+import { maxXs } from "~/cssVariables";
 
 const s = compileStaticStylesheet(styles);
 const inputClassName = compileStaticStylesheet(inputStyles)("input");
@@ -176,6 +179,8 @@ export const MaternityLeaveTimePeriods: React.FC<MaternityLeaveProps> = props =>
         DAYS_PER_MONTH),
   );
 
+  const isMobile = useBreakpoint(maxXs);
+
   return (
     <CenteredWrapper>
       <Title marginBottom={16}>
@@ -199,17 +204,23 @@ export const MaternityLeaveTimePeriods: React.FC<MaternityLeaveProps> = props =>
         />
         <div className={s("bar__wrapper")}>
           <div className={s("bar__separator")} />
-          <div className={s("bar__label")}>Þinn réttur</div>
-          <div className={s("bar__months")}>{MONTHS_OF_MATERNITY_LEAVE_PER_PARENT} mánuðir</div>
+          <div className={s("bar__text", { left: true })}>
+            <div className={s("bar__label")}>Þinn réttur</div>
+            <div className={s("bar__months")}>{MONTHS_OF_MATERNITY_LEAVE_PER_PARENT} mánuðir</div>
+          </div>
         </div>
         <div className={s("bar__wrapper")}>
           <div className={s("bar__separator")} />
-          <div className={s("bar__label")}>Sameiginlegur réttur</div>
-          <div className={s("bar__months")}>{MONTHS_OF_SHARED_MATERNITY_LEAVE} mánuðir</div>
+          <div className={s("bar__text", { center: true })}>
+            <div className={s("bar__label")}>Sameiginlegur réttur</div>
+            <div className={s("bar__months")}>{MONTHS_OF_SHARED_MATERNITY_LEAVE} mánuðir</div>
+          </div>
         </div>
         <div className={s("bar__wrapper")}>
-          <div className={s("bar__label")}>Réttur maka</div>
-          <div className={s("bar__months")}>{MONTHS_OF_MATERNITY_LEAVE_PER_PARENT} mánuðir</div>
+          <div className={s("bar__text", { right: true })}>
+            <div className={s("bar__label")}>Réttur maka</div>
+            <div className={s("bar__months")}>{MONTHS_OF_MATERNITY_LEAVE_PER_PARENT} mánuðir</div>
+          </div>
         </div>
       </div>
       {timePeriods.map((period, i) => {
@@ -223,7 +234,7 @@ export const MaternityLeaveTimePeriods: React.FC<MaternityLeaveProps> = props =>
           >
             <div className={s("timePeriod__upper")}>
               <div className={s("timePeriod__section")}>
-                {i === 0 && <div className={s("timePeriod__label")}>Frá</div>}
+                {(i === 0 || isMobile) && <div className={s("timePeriod__label")}>Frá</div>}
                 <div className={s("datePicker__container")}>
                   <i className={s("datePicker__icon")}>
                     <CalendarIcon />
@@ -248,7 +259,7 @@ export const MaternityLeaveTimePeriods: React.FC<MaternityLeaveProps> = props =>
                 </div>
               </div>
               <div className={s("timePeriod__section")}>
-                {i === 0 && <div className={s("timePeriod__label")}>Til</div>}
+                {(i === 0 || isMobile) && <div className={s("timePeriod__label")}>Til</div>}
                 <div className={s("datePicker__container")}>
                   <i className={s("datePicker__icon")}>
                     <CalendarIcon />
@@ -275,7 +286,7 @@ export const MaternityLeaveTimePeriods: React.FC<MaternityLeaveProps> = props =>
                 </div>
               </div>
               <button onClick={() => removeTimePeriodAtIndex(i)} className={s("removeTimePeriod")}>
-                Eyða tímabili
+                <TrashIcon />
               </button>
             </div>
             {hasBothDates && daysInRange < 14 && (

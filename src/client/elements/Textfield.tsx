@@ -170,7 +170,9 @@ export const Textfield: React.FC<Props> = (props: Props) => {
       <label style={typeof maxWidth === "number" ? { maxWidth } : {}}>
         {typeof label === "string" && <div className={s("label")}>{label}</div>}
         <div className={s("contentWrapper")}>
-          {iconLeft ? <TextFieldIcon icon={iconLeft} direction="left" /> : null}
+          {iconLeft ? (
+            <TextFieldIcon disabled={props.disabled} icon={iconLeft} direction="left" />
+          ) : null}
           <div
             className={s("inputWrapper", {
               "icon-left": !!iconLeft,
@@ -188,6 +190,7 @@ export const Textfield: React.FC<Props> = (props: Props) => {
             />
           </div>
           <TextFieldIcon
+            disabled={props.disabled}
             loading={!!loading}
             error={showError}
             success={showSuccess}
