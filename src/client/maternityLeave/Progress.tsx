@@ -102,6 +102,16 @@ interface Props {
 }
 
 export const MaternityLeaveProgressNew: React.FC<Props> = props => {
+  let hide = false;
+
+  {
+    const activeStep = props.steps[props.stepIndex];
+
+    if (activeStep.name === "existingApplications" || activeStep.name === "applicationOverview") {
+      hide = true;
+    }
+  }
+
   const filteredSteps = props.steps.filter(step => !step.hidden);
 
   const progressSteps: Array<{
@@ -160,7 +170,7 @@ export const MaternityLeaveProgressNew: React.FC<Props> = props => {
   });
 
   return (
-    <div className={s("container")}>
+    <div className={s("container")} style={{ opacity: hide ? 0 : 1 }}>
       <div className={s("progressContainer")}>{stepElements}</div>
     </div>
   );
