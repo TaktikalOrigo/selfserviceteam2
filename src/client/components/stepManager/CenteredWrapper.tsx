@@ -8,9 +8,12 @@ const styles = ({ css }: StyleParams) => ({
     margin: 0 auto;
     width: 960px;
     max-width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
+
+    @media (min-width: ${cssBreakpoints.minXs}) {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
 
     /* @media (max-width: ${cssBreakpoints.maxXs}) {
       min-height: calc(100vh - 82px);
