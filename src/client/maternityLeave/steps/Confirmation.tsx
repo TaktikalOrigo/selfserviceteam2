@@ -16,6 +16,9 @@ import { Button } from "~/client/elements/Button";
 import { isValueValid } from "~/common/util/form/getFieldError";
 import Axios from "axios";
 import { ApplicationFields } from "~/types";
+import { resolveAfter } from "~/client/util/animation/resolveAfter";
+import { handleError } from "@taktikal/error";
+import { ErrorMessage } from "~/client/elements/ErrorMessage";
 
 const isAllInfoValid = (fields: MaternityLeaveFields): boolean => {
   if (!fields.name || !fields.email) {
@@ -48,11 +51,21 @@ export const MaternityLeaveConfirmation: React.FC<MaternityLeaveProps> = props =
 
   const [hasAttemptedToSubmit, setHasAttemptedToSubmit] = useState(false);
 
+  const [pending, setPending] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
   const onSubmit = async () => {
+    if (pending) {
+      return;
+    }
+
     if (!allInfoValid) {
       setHasAttemptedToSubmit(true);
       return;
     }
+
+    setPending(true);
+    setErrorMessage("");
 
     try {
       const body: ApplicationFields = {
@@ -66,13 +79,14 @@ export const MaternityLeaveConfirmation: React.FC<MaternityLeaveProps> = props =
         salary: props.fields.salary,
         unionPercentage: props.fields.unionPercentage,
       };
-      await Axios.post(`/api/person/${props.fields.ssn}/application`, body);
+      await resolveAfter(750, Axios.post(`/api/person/${props.fields.ssn}/application`, body));
+      setPending(false);
+      props.nextStep();
     } catch (e) {
-      console.error(e);
-      return;
+      const [err] = handleError(e);
+      setErrorMessage(err.message);
+      setPending(false);
     }
-
-    props.nextStep();
   };
 
   return (
@@ -143,9 +157,10 @@ export const MaternityLeaveConfirmation: React.FC<MaternityLeaveProps> = props =
           required
         />
       </div>
-      <Button primary onClick={onSubmit}>
+      <Button primary onClick={onSubmit} loading={pending} marginBottom={24}>
         Staðfesta
       </Button>
+      <ErrorMessage message={errorMessage} />
     </CenteredWrapper>
   );
 };

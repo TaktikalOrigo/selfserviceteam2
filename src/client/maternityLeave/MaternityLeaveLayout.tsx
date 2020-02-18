@@ -10,5 +10,9 @@ const s = compileStaticStylesheet(({ css }) => ({
 }));
 
 export const MaternityLeaveLayout: React.FC = props => {
-  return <div className={s("container")}>{props.children}</div>;
+  return (
+    <>
+      <div className={s("container")}>{props.children}</div>
+    </>
+  );
 };

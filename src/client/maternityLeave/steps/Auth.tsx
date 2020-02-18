@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Axios from "axios";
 import { handleError } from "@taktikal/error";
+import Cookie from "js-cookie";
 import { MaternityLeaveProps } from "~/client/maternityLeave/maternityLeaveSteps";
 import { Textfield } from "~/client/elements/Textfield";
 import { Button } from "~/client/elements/Button";
@@ -11,6 +12,7 @@ import { ErrorMessage } from "~/client/elements/ErrorMessage";
 import { PersonFields } from "~/types";
 import { digits } from "~/common/util/form/digits";
 import { CenteredWrapper } from "~/client/components/stepManager/CenteredWrapper";
+import { resolveAfter } from "~/client/util/animation/resolveAfter";
 
 export const MaternityLeaveAuth: React.FC<MaternityLeaveProps> = props => {
   const [pending, setPending] = useState(false);
@@ -26,11 +28,11 @@ export const MaternityLeaveAuth: React.FC<MaternityLeaveProps> = props => {
     setPending(true);
 
     try {
-      const { data, status } = await Axios.get<PersonFields>(
-        `/api/person/${digits(props.fields.ssn)}`,
-        {
+      const { data, status } = await resolveAfter(
+        750,
+        Axios.get<PersonFields>(`/api/person/${digits(props.fields.ssn)}`, {
           validateStatus: status => status === 200 || status === 404,
-        },
+        }),
       );
 
       if (status === 404) {
@@ -47,7 +49,9 @@ export const MaternityLeaveAuth: React.FC<MaternityLeaveProps> = props => {
       props.setFields({
         name: data.name,
         ssn: data.ssn,
+        applications: data.applications,
       });
+      Cookie.set("ssn", data.ssn);
 
       props.nextStep();
       setPending(false);
