@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Select from "react-select";
 import { MaternityLeaveProps } from "~/client/maternityLeave/maternityLeaveSteps";
 import { CenteredWrapper } from "~/client/components/stepManager/CenteredWrapper";
