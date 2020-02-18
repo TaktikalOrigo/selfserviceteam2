@@ -4,11 +4,19 @@ import { compileStaticStylesheet } from "~/client/util/compileStaticStylesheet";
 import { HeaderProps } from "~/client/components/header/Header";
 import styles from "~/client/components/header/MobileHeader.styles";
 import { IslandWebsiteLogo } from "~/client/icon/IslandWebsiteLogo";
+import { useDidUpdate } from "~/client/hooks/useDidUpdate";
 
 const s = compileStaticStylesheet(styles);
 
 export const MobileHeader: React.FC<HeaderProps> = props => {
   const [open, setOpen] = useState(false);
+  const [fadeOut, setFadeOut] = useState(false);
+
+  useDidUpdate(() => {
+    if (!open && !fadeOut) {
+      setFadeOut(true);
+    }
+  }, [open]);
 
   return (
     <>
@@ -48,7 +56,10 @@ export const MobileHeader: React.FC<HeaderProps> = props => {
               />
             ))}
           </button>
-          <div className={s("background", { open })} onClick={() => setOpen(false)} />
+          <div
+            className={s("background", { open, animate: fadeOut })}
+            onClick={() => setOpen(false)}
+          />
         </>
       )}
     </>

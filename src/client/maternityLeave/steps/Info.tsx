@@ -79,16 +79,18 @@ export const MaternityLeaveInfo: React.FC<MaternityLeaveProps> = props => {
           <div className={s("row")}>
             <div>
               <div className={s("label")}>Stéttarfélag</div>
-              <Select
-                placeholder="Veldu það sem við á"
-                options={unionOptions}
-                value={valueToUnionOption[props.fields.unionPercentage]}
-                onChange={
-                  (({ value }: { value: number }) =>
-                    props.setFields({ unionPercentage: value })) as any
-                }
-                styles={selectStyles}
-              />
+              <div className={s("select")}>
+                <Select
+                  placeholder="Veldu það sem við á"
+                  options={unionOptions}
+                  value={valueToUnionOption[props.fields.unionPercentage]}
+                  onChange={
+                    (({ value }: { value: number }) =>
+                      props.setFields({ unionPercentage: value })) as any
+                  }
+                  styles={selectStyles}
+                />
+              </div>
             </div>
 
             <Textfield
@@ -130,7 +132,7 @@ export const MaternityLeaveInfo: React.FC<MaternityLeaveProps> = props => {
           <div className={s("row")} style={{ marginBottom: 64 }}>
             <div>
               <div className={s("label")}>Lífeyrissjóður</div>
-              <div>
+              <div className={s("select")}>
                 <Select
                   placeholder="Veldu það sem við á"
                   options={pensionFundOptions}
@@ -146,7 +148,7 @@ export const MaternityLeaveInfo: React.FC<MaternityLeaveProps> = props => {
 
             <div>
               <div className={s("label")}>Séreignarsparnaður</div>
-              <div>
+              <div className={s("select")}>
                 <Select
                   placeholder="Veldu það sem við á"
                   options={personalPensionFundPercentOptions}
