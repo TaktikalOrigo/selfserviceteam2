@@ -5,7 +5,6 @@ import { CenteredWrapper } from "~/client/components/stepManager/CenteredWrapper
 import { Title } from "~/client/elements/Title";
 import { Textfield } from "~/client/elements/Textfield";
 import { digits } from "~/common/util/form/digits";
-import Checkbox from "~/client/elements/Checkbox";
 import { Button } from "~/client/elements/Button";
 import { compileStaticStylesheet } from "~/client/util/compileStaticStylesheet";
 import styles from "~/client/maternityLeave/steps/Info.styles";
@@ -62,15 +61,8 @@ const valueToPersonalPensionFundOption = personalPensionFundPercentOptions.reduc
 }, {});
 
 export const MaternityLeaveInfo: React.FC<MaternityLeaveProps> = props => {
-  const [checked, setChecked] = useState(false);
-
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    if (!checked) {
-      return;
-    }
-
     props.nextStep();
   };
 
@@ -169,15 +161,7 @@ export const MaternityLeaveInfo: React.FC<MaternityLeaveProps> = props => {
             </div>
           </div>
 
-          <div>
-            <Checkbox
-              checked={checked}
-              onChange={() => setChecked(!checked)}
-              label="Ég samþykki að sótt séu gögn til Heilsuveru, Ríkisskattstjóra, Þjóðskrá og Fjársýslunnar."
-            />
-          </div>
-
-          <Button primary type="submit" disabled={!checked} marginBottom={32} marginTop={32}>
+          <Button primary type="submit" marginBottom={32} marginTop={32}>
             Áfram
           </Button>
         </form>

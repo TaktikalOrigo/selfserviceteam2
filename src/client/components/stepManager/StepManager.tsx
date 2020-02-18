@@ -36,6 +36,7 @@ export interface Step<T> {
   skipStep?: (fields: T) => boolean;
   beforeEnter?: (fields: T) => Promise<Partial<T>>;
   component: StepComponent<T>;
+  hidden?: boolean;
 }
 
 export const stepActions = {
@@ -98,6 +99,7 @@ interface OwnProps<T> {
   initialFields: T;
   scrollContainerToY?: (y: number) => void;
   getContainerScrollY?: () => number;
+  onStateChange?: (state: T) => void;
 }
 type Props<T> = OwnProps<T>;
 
@@ -176,6 +178,8 @@ export const StepManager = <T extends {}>(props: Props<T>) => {
 
         // Wait for React to rerender
         await new Promise(resolve => setTimeout(resolve));
+
+        props.onStateChange?.(stateRef.current.fields);
       }
 
       setTransitionDirection(
@@ -270,7 +274,11 @@ export const StepManager = <T extends {}>(props: Props<T>) => {
                   <ContentContainer stepIndex={stepIndex} steps={props.steps}>
                     <StepComponent
                       fields={fields as T}
-                      setFields={_fields => dispatch(stepActions.setFields(_fields))}
+                      setFields={async _fields => {
+                        dispatch(stepActions.setFields(_fields));
+                        await new Promise(resolve => setTimeout(resolve));
+                        props.onStateChange?.(stateRef.current.fields);
+                      }}
                       goToStep={(name, options = {}) => goToStepWithName(stepIndex, name, options)}
                       nextStep={() => goToStepAtIndex(stepIndex, stepIndex + 1)}
                       prevStep={() => goToStepAtIndex(stepIndex, stepIndex - 1)}

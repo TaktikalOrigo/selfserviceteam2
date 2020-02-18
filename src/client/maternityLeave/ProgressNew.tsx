@@ -88,6 +88,8 @@ interface Props {
 }
 
 export const MaternityLeaveProgressNew: React.FC<Props> = props => {
+  const filteredSteps = props.steps.filter(step => !step.hidden);
+
   const progressSteps: Array<{
     t: number;
     index: number;
@@ -95,8 +97,8 @@ export const MaternityLeaveProgressNew: React.FC<Props> = props => {
     icon: React.ReactNode;
   }> = [];
 
-  for (let i = 0; i < props.steps.length; i += 1) {
-    const step = props.steps[i];
+  for (let i = 0; i < filteredSteps.length; i += 1) {
+    const step = filteredSteps[i];
     if (step.sectionName) {
       progressSteps.push({
         index: i,
@@ -115,7 +117,7 @@ export const MaternityLeaveProgressNew: React.FC<Props> = props => {
     }
 
     const nextStepIndex =
-      i === progressSteps.length - 1 ? props.steps.length - 1 : progressSteps[i + 1].index;
+      i === progressSteps.length - 1 ? filteredSteps.length - 1 : progressSteps[i + 1].index;
 
     step.t = Math.max(
       0.05,

@@ -2,6 +2,8 @@ import { Application } from "~/server/entities/Application";
 import { BaseEntity } from "typeorm";
 import { Person } from "~/server/entities/Person";
 import { ApplicationTime } from "~/server/entities/ApplicationTime";
+import { NextPageContext } from "next";
+import { Request, Response } from "express";
 
 export type ArgumentTypes<F extends Function> = F extends (...args: infer A) => any ? A : never;
 export type ReturnType<T> = T extends (...args: any[]) => infer R ? R : any;
@@ -75,4 +77,11 @@ export type ApplicationFields = Omit<
   applicationTimes: ApplicationTimeFields[];
 };
 
+export type ApplicationItem = Subtract<Application, BaseEntity>;
+
 export type PersonFields = Subtract<Subtract<Person, BaseEntity>, BaseEntityFields>;
+
+export interface RequestContext extends NextPageContext {
+  req: Request;
+  res: Response;
+}

@@ -4,13 +4,7 @@ import { MaternityLeaveAuth } from "~/client/maternityLeave/steps/Auth";
 import { MaternityLeaveInfo } from "~/client/maternityLeave/steps/Info";
 import { MaternityLeaveDateOfBirth } from "~/client/maternityLeave/steps/DateOfBirth";
 import { MaternityLeaveTimePeriods } from "~/client/maternityLeave/steps/TimePeriods";
-import {
-  TimePeriod,
-  ApplicationFields,
-  ApplicationData,
-  MaternityResults,
-  ExpectedBirthDate,
-} from "~/types";
+import { TimePeriod, MaternityResults, ExpectedBirthDate, ApplicationItem } from "~/types";
 import { DAYS_PER_MONTH, MONTHS_OF_MATERNITY_LEAVE_PER_PARENT } from "~/constants";
 import { MaternityLeaveConfirmation } from "~/client/maternityLeave/steps/Confirmation";
 import { MaternityLeaveComplete } from "~/client/maternityLeave/steps/Complete";
@@ -20,6 +14,9 @@ import { PencilIcon } from "~/client/icon/PencilIcon";
 import { CheckmarkIcon } from "~/client/icon/CheckmarkIcon";
 import Axios from "axios";
 import { calculate } from "~/server/calculator";
+import { MaternityLeaveApplicationOverview } from "~/client/maternityLeave/steps/ApplicationOverview";
+import { MaternityLeaveExistingApplications } from "~/client/maternityLeave/steps/ExistingApplications";
+import { MaternityLeaveDataAgreement } from "~/client/maternityLeave/steps/DataAgreement";
 
 export interface MaternityLeaveFields {
   name: string;
@@ -56,7 +53,8 @@ export interface MaternityLeaveFields {
   hasEmployeeAccepted: boolean;
   hasGovernmentAccepted: boolean; // Vinnumálastofnun
 
-  applications: ApplicationFields[];
+  applications: ApplicationItem[];
+  applicationIndex: number;
 }
 
 export type MaternityLeaveProps = StepComponentProps<MaternityLeaveFields>;
@@ -67,42 +65,20 @@ export const maternityLeaveSteps: Step<MaternityLeaveFields>[] = [
     sectionName: "Auðkenning",
     name: "auth",
     component: MaternityLeaveAuth,
+    skipStep: state => !!state.ssn,
   },
   {
-    beforeEnter: async state => {
-      const { data, status } = await Axios.get<ApplicationData>(
-        `/api/person/${state.ssn}/applicationData`,
-        {
-          validateStatus: status => status === 200 || status === 404,
-        },
-      );
-
-      if (status === 404) {
-        return {};
-      }
-
-      const {
-        salary,
-        otherSalary,
-        jobPercentage,
-        pensionPercentage,
-        pensionOptionalPercentage,
-        unionPercentage,
-        personalTaxBreakRate,
-      } = data;
-
-      return {
-        jobPercentage,
-        otherSalary,
-        personalFundContribution: pensionOptionalPercentage as 0 | 2 | 4,
-        pensionPercentage,
-        salary,
-        unionPercentage,
-        personalTaxBreakRate,
-      };
-    },
+    name: "existingApplications",
+    component: MaternityLeaveExistingApplications,
+    skipStep: state => !state.applications.length,
+  },
+  {
     icon: <PencilIcon />,
     sectionName: "Upplýsingar",
+    name: "dataAgreement",
+    component: MaternityLeaveDataAgreement,
+  },
+  {
     name: "info",
     component: MaternityLeaveInfo,
   },
@@ -177,5 +153,10 @@ export const maternityLeaveSteps: Step<MaternityLeaveFields>[] = [
   {
     name: "complete",
     component: MaternityLeaveComplete,
+  },
+  {
+    hidden: true,
+    name: "applicationOverview",
+    component: MaternityLeaveApplicationOverview,
   },
 ];
