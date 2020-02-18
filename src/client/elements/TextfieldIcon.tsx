@@ -10,7 +10,7 @@ const s = compileStaticStylesheet(styles);
 
 interface Props {
   direction: "left" | "right";
-  disabled?: boolean;
+  readonly?: boolean;
   icon?: React.ReactNode;
   loading?: boolean;
   success?: boolean;
@@ -18,7 +18,7 @@ interface Props {
 }
 
 const TextFieldIcon: React.FC<Props> = (props: Props) => {
-  const { loading, success, error, direction, disabled } = props;
+  const { loading, success, error, direction, readonly } = props;
 
   let icon = props.icon;
   let iconKey = "normal";
@@ -35,7 +35,7 @@ const TextFieldIcon: React.FC<Props> = (props: Props) => {
   }
 
   return (
-    <div className={s("icon", { [direction]: true, disabled: !!disabled })}>
+    <div className={s("icon", { [direction]: true, readonly: !!readonly })}>
       <TransitionGroup className={s("iconContainer")}>
         {icon && true ? (
           <CSSTransition

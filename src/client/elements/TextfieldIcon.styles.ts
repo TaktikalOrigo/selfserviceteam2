@@ -22,7 +22,7 @@ export default ({ css, keyframes }: StyleParams) => {
         cursor: text;
         width: 18px;
         height: 18px;
-        fill: ${cssVariables.colorBlack};
+        fill: ${cssVariables.colorPrimary};
       }
 
       &--left {
@@ -33,7 +33,7 @@ export default ({ css, keyframes }: StyleParams) => {
         right: 20px;
       }
 
-      &--disabled {
+      &--readonly {
         svg {
           fill: ${cssVariables.colorBlack};
         }
@@ -65,10 +65,6 @@ export default ({ css, keyframes }: StyleParams) => {
       bottom: 0;
       width: inherit;
       height: inherit;
-
-      svg {
-        fill: ${cssVariables.colorPrimary};
-      }
     `,
 
     enterActive: css`
