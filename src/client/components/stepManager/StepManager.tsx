@@ -8,7 +8,7 @@ import { disableScroll, enableScroll } from "~/client/util/scroll";
 import { animate } from "~/client/util/animation/animate";
 import { compileStaticStylesheet } from "~/client/util/compileStaticStylesheet";
 import styles from "~/client/components/stepManager/StepManager.styles";
-import { MaternityLeaveProgressNew } from "~/client/maternityLeave/ProgressNew";
+import { MaternityLeaveProgressNew } from "~/client/maternityLeave/Progress";
 
 const s = compileStaticStylesheet(styles);
 

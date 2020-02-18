@@ -1,11 +1,16 @@
 import React from "react";
 import { compileStaticStylesheet } from "~/client/util/compileStaticStylesheet";
-import { HEADER_HEIGHT } from "~/cssVariables";
+import { HEADER_HEIGHT, cssBreakpoints } from "~/cssVariables";
 
 const s = compileStaticStylesheet(({ css }) => ({
   container: css`
     padding: 0 32px;
     min-height: calc(100vh - ${HEADER_HEIGHT + 42}px);
+
+    @media (max-width: ${cssBreakpoints.maxXs}) {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
   `,
 }));
 

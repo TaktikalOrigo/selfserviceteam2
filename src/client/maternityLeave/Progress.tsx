@@ -2,7 +2,7 @@ import React from "react";
 import { compileStaticStylesheet } from "~/client/util/compileStaticStylesheet";
 import { MaternityLeaveFields } from "~/client/maternityLeave/maternityLeaveSteps";
 import { Step } from "~/client/components/stepManager/StepManager";
-import { cssVariables } from "~/cssVariables";
+import { cssVariables, cssBreakpoints } from "~/cssVariables";
 import { darkenColor } from "~/client/util/color";
 
 const s = compileStaticStylesheet(({ css }) => ({
@@ -11,6 +11,11 @@ const s = compileStaticStylesheet(({ css }) => ({
     max-width: 100%;
     margin: 16px auto 0;
     padding: 0 32px;
+
+    @media (max-width: ${cssBreakpoints.maxXs}) {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
   `,
 
   progressContainer: css`
@@ -24,6 +29,15 @@ const s = compileStaticStylesheet(({ css }) => ({
     background: white;
     position: relative;
     margin-right: 8px;
+
+    @media (max-width: ${cssBreakpoints.maxXs}) {
+      display: none;
+      width: 100%;
+
+      &--current {
+        display: block;
+      }
+    }
   `,
 
   item__icon: css`
@@ -131,7 +145,7 @@ export const MaternityLeaveProgressNew: React.FC<Props> = props => {
     const active = step.t !== -1;
 
     stepElements.push(
-      <div key={i} className={s("item", { active })}>
+      <div key={i} className={s("item", { active, current: active && step.t !== 1 })}>
         <i className={s("item__icon", { active })}>{step.icon}</i>
         <div className={s("item__label", { active })}>{step.label}</div>
         <div className={s("bar")}>

@@ -32,4 +32,7 @@ export default ({ css }: StyleParams) => ({
     min-height: 14px;
     color: ${cssVariables.colorBlack};
   `,
+  select: css`
+    margin-bottom: 40px;
+  `,
 });

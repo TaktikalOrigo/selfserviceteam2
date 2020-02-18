@@ -20,7 +20,7 @@ export default ({ css, keyframes }: StyleParams) => {
     header__content: css`
       height: ${cssVariables.headerHeight};
       margin: 0 auto;
-      padding: 0 32px;
+      padding: 0 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -53,8 +53,11 @@ export default ({ css, keyframes }: StyleParams) => {
       bottom: 0;
       background: rgba(0, 0, 0, 0.3);
       z-index: 100;
-      animation: ${bgFadeOut} 0.3s;
       transform: translateX(100%);
+
+      &--animate {
+        animation: ${bgFadeOut} 0.3s;
+      }
 
       &--open {
         animation: ${bgFadeIn} 0.3s;
@@ -70,7 +73,7 @@ export default ({ css, keyframes }: StyleParams) => {
     `,
 
     burger: css`
-      position: fixed;
+      position: absolute;
       width: 32px;
       height: 32px;
       outline: none;
