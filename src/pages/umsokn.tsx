@@ -7,53 +7,9 @@ import {
   MaternityLeaveFields,
 } from "~/client/maternityLeave/maternityLeaveSteps";
 import { MaternityLeaveLayout } from "~/client/maternityLeave/MaternityLeaveLayout";
-import { IslandWebsiteLogo } from "~/client/icon/IslandWebsiteLogo";
-import { cssVariables } from "~/cssVariables";
-import { compileStaticStylesheet } from "~/client/util/compileStaticStylesheet";
 import { RequestContext, PersonFields } from "~/types";
 import { getPublicEnv } from "~/common/util/env";
-
-const s = compileStaticStylesheet(({ css }) => ({
-  header: css`
-    height: ${cssVariables.headerHeight};
-  `,
-
-  header__content: css`
-    height: ${cssVariables.headerHeight};
-    margin: 0 auto;
-    padding: 0 32px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  `,
-
-  logo: css`
-    svg {
-      height: 24px;
-      width: 148px;
-    }
-  `,
-
-  nameAndSsnContainer: css`
-    text-align: right;
-  `,
-
-  name: css`
-    font-family: ${cssVariables.bodyFont};
-    font-size: 18px;
-    font-weight: 600;
-    color: ${cssVariables.colorBlack};
-    line-height: 1;
-    margin-bottom: 8px;
-  `,
-
-  ssn: css`
-    font-family: ${cssVariables.bodyFont};
-    font-size: 12px;
-    color: ${cssVariables.colorBlack};
-    line-height: 1;
-  `,
-}));
+import { Header } from "~/client/components/header/Header";
 
 interface State {
   name: string;
@@ -114,19 +70,7 @@ export default class Umsokn extends React.Component<{}, State> {
   public render() {
     return (
       <>
-        <header className={s("header")}>
-          <div className={s("header__content")}>
-            <a href="https://island.is" className={s("logo")}>
-              <IslandWebsiteLogo />
-            </a>
-            {this.state.name && (
-              <div className={s("nameAndSsnContainer")}>
-                <div className={s("name")}>{this.state.name}</div>
-                <div className={s("ssn")}>{this.state.ssn}</div>
-              </div>
-            )}
-          </div>
-        </header>
+        <Header isLoggedIn={!!this.state.name} name={this.state.name} ssn={this.state.ssn} />
         <StepManager
           initialFields={{
             applications: [],
