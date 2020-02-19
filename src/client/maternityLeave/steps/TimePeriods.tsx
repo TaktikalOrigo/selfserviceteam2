@@ -308,7 +308,11 @@ export const MaternityLeaveTimePeriods: React.FC<MaternityLeaveProps> = props =>
         Þú hefur valið <strong>{usedMessage}</strong> af <strong>{monthsAvailable}</strong> mánuðum
         mögulegum
       </Text>
+      <Button inline onClick={() => props.prevStep()} marginRight={16} marginBottom={16}>
+        Til baka
+      </Button>
       <Button
+        inline
         disabled={usageIsAboveMaximum || isAnyTimePeriodIncomplete || usageIsEmpty}
         primary
         onClick={onSubmit}

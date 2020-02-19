@@ -41,7 +41,10 @@ export const MaternityLeaveDateOfBirth: React.FC<MaternityLeaveProps> = props =>
           />
         </div>
       </div>
-      <Button primary disabled={!expectedDateOfBirth} onClick={() => props.nextStep()}>
+      <Button inline onClick={() => props.prevStep()} marginRight={16} marginBottom={16}>
+        Til baka
+      </Button>
+      <Button inline primary disabled={!expectedDateOfBirth} onClick={() => props.nextStep()}>
         Áfram
       </Button>
     </CenteredWrapper>

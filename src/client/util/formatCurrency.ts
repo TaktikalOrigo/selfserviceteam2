@@ -11,8 +11,16 @@ Math.trunc =
     return Math.ceil(x);
   };
 
+interface Options {
+  decimal: string;
+  thousands: string;
+  showCurrency: boolean;
+}
+
 // (5000000.5, ",", ".") => 5,000,000.5
-function withDecimals(amount: number, decimal = ".", thousands = ",") {
+function withDecimals(amount: number, options: Omit<Options, "showCurrency">) {
+  const { decimal, thousands } = options;
+
   const absValue = Math.trunc(amount);
   const decimalValue = amount - absValue;
   const priceStr = Math.trunc(amount).toString();
@@ -30,17 +38,12 @@ function withDecimals(amount: number, decimal = ".", thousands = ",") {
   return finalStr + decimalString;
 }
 
-const formatters = {
-  isk: (amount: number) => `${withDecimals(amount)} kr.`,
-};
+export default function formatCurrency(amount: number, options: Partial<Options> = {}): string {
+  const { decimal = ",", thousands = ".", showCurrency = true } = options;
 
-export default function formatCurrency(
-  amount: number,
-  currency: keyof typeof formatters = "isk",
-): string {
-  if (typeof formatters[currency] !== "function") {
-    throw new Error(`No formatter defined for currency: '${currency}'.`);
+  if (!showCurrency) {
+    return withDecimals(amount, { decimal, thousands });
   }
 
-  return formatters[currency](amount);
+  return `${withDecimals(amount, { decimal, thousands })} kr.`;
 }

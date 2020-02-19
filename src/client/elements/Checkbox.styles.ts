@@ -10,6 +10,7 @@ export default ({ css }: StyleParams) => ({
     margin-top: 1px;
     position: relative;
     display: inline-block;
+    margin-bottom: 40px;
   `,
 
   box: css`

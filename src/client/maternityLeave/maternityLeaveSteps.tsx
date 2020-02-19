@@ -4,7 +4,13 @@ import { MaternityLeaveAuth } from "~/client/maternityLeave/steps/Auth";
 import { MaternityLeaveInfo } from "~/client/maternityLeave/steps/Info";
 import { MaternityLeaveDateOfBirth } from "~/client/maternityLeave/steps/DateOfBirth";
 import { MaternityLeaveTimePeriods } from "~/client/maternityLeave/steps/TimePeriods";
-import { TimePeriod, MaternityResults, ExpectedBirthDate, ApplicationItem } from "~/types";
+import {
+  TimePeriod,
+  MaternityResults,
+  ExpectedBirthDate,
+  ApplicationItem,
+  MaternityData,
+} from "~/types";
 import { DAYS_PER_MONTH, MONTHS_OF_MATERNITY_LEAVE_PER_PARENT } from "~/constants";
 import { MaternityLeaveConfirmation } from "~/client/maternityLeave/steps/Confirmation";
 import { MaternityLeaveComplete } from "~/client/maternityLeave/steps/Complete";
@@ -17,6 +23,30 @@ import { calculate } from "~/server/calculator";
 import { MaternityLeaveApplicationOverview } from "~/client/maternityLeave/steps/ApplicationOverview";
 import { MaternityLeaveExistingApplications } from "~/client/maternityLeave/steps/ExistingApplications";
 import { MaternityLeaveDataAgreement } from "~/client/maternityLeave/steps/DataAgreement";
+import { MaternityLeavePaymentPlan } from "~/client/maternityLeave/steps/PaymentPlan";
+import { calculatePaymentPlan } from "~/client/maternityLeave/calculatePaymentPlan";
+
+const getMaternityDataFromState = (state: MaternityLeaveFields): MaternityData => {
+  const {
+    jobPercentage,
+    otherSalary,
+    personalFundContribution,
+    pensionPercentage,
+    personalTaxBreakRate,
+    unionPercentage,
+    salary,
+  } = state;
+
+  return {
+    jobPercentage,
+    otherSalary,
+    pensionOptionalPercentage: personalFundContribution,
+    pensionPercentage,
+    personalTaxBreakRate,
+    unionPercentage,
+    salary,
+  };
+};
 
 export interface MaternityLeaveFields {
   name: string;
@@ -27,6 +57,10 @@ export interface MaternityLeaveFields {
   expectedDateOfBirth: Date | null;
 
   estimationResult: MaternityResults;
+  paymentPlan: Array<{
+    result: MaternityResults;
+    monthIndex: number;
+  }>;
 
   jobPercentage: number;
 
@@ -106,30 +140,13 @@ export const maternityLeaveSteps: Step<MaternityLeaveFields>[] = [
     name: "timePeriods",
     component: MaternityLeaveTimePeriods,
     beforeEnter: async state => {
+      if (state.timePeriods.length) {
+        return {};
+      }
+
       const startDate = state.expectedDateOfBirth || startOfDay(new Date());
-
-      const {
-        jobPercentage,
-        otherSalary,
-        personalFundContribution,
-        pensionPercentage,
-        personalTaxBreakRate,
-        unionPercentage,
-        salary,
-      } = state;
-
-      const estimationResult = calculate({
-        jobPercentage,
-        otherSalary,
-        pensionOptionalPercentage: personalFundContribution,
-        pensionPercentage,
-        personalTaxBreakRate,
-        unionPercentage,
-        salary,
-      });
-
       return {
-        estimationResult,
+        estimationResult: calculate(getMaternityDataFromState(state)),
         timePeriods: state.timePeriods.length
           ? state.timePeriods
           : [
@@ -141,6 +158,15 @@ export const maternityLeaveSteps: Step<MaternityLeaveFields>[] = [
                 ),
               },
             ],
+      };
+    },
+  },
+  {
+    name: "paymentPlan",
+    component: MaternityLeavePaymentPlan,
+    beforeEnter: async state => {
+      return {
+        paymentPlan: calculatePaymentPlan(state.timePeriods, getMaternityDataFromState(state)),
       };
     },
   },

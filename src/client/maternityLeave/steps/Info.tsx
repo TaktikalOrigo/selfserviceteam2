@@ -63,6 +63,7 @@ const valueToPersonalPensionFundOption = personalPensionFundPercentOptions.reduc
 export const MaternityLeaveInfo: React.FC<MaternityLeaveProps> = props => {
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     props.nextStep();
   };
 
@@ -163,7 +164,17 @@ export const MaternityLeaveInfo: React.FC<MaternityLeaveProps> = props => {
             </div>
           </div>
 
-          <Button primary type="submit" marginBottom={32} marginTop={32}>
+          <Button
+            inline
+            onClick={() => props.goToStep("dataAgreement")}
+            marginRight={16}
+            marginBottom={16}
+            marginTop={32}
+            type="button"
+          >
+            Til baka
+          </Button>
+          <Button inline primary type="submit" marginBottom={32}>
             Áfram
           </Button>
         </form>
