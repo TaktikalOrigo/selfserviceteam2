@@ -162,7 +162,7 @@ export const maternityLeaveSteps: Step<MaternityLeaveFields>[] = [
     },
   },
   {
-    name: "breakdown",
+    name: "paymentPlan",
     component: MaternityLeavePaymentPlan,
     beforeEnter: async state => {
       return {
