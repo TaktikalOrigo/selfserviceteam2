@@ -153,4 +153,13 @@ export const testDataPersonList: PersonFields[] = [
     spouseSsn: "1636112767",
     applications: [],
   },
+
+  {
+    name: "Raja Avery",
+    ssn: "164105304911",
+    address: "Ap #245-4878 Et Avenue",
+    spouseName: "Pascale B. Hull",
+    spouseSsn: "168603034250",
+    applications: [],
+  },
 ];
