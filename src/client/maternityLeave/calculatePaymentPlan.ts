@@ -2,15 +2,6 @@ import { TimePeriod, MaternityResults, MaternityData } from "~/types";
 import { calculate } from "~/server/calculator";
 import { startOfMonth, compareDesc, addMonths, addDays, getDaysInMonth, getMonth } from "date-fns";
 
-export const lerpMaternityData = (
-  { jobPercentage, personalTaxBreakRate, ...rest }: MaternityData,
-  t: number,
-): MaternityData => ({
-  jobPercentage: jobPercentage * t,
-  personalTaxBreakRate: personalTaxBreakRate * t,
-  ...rest,
-});
-
 export const isDayInTimePeriod = (date: Date, timePeriod: TimePeriod): boolean => {
   return (
     compareDesc(timePeriod.startDate!, date) !== -1 && compareDesc(timePeriod.endDate!, date) !== 1
