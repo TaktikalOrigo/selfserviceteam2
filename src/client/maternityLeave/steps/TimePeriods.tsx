@@ -305,7 +305,7 @@ export const MaternityLeaveTimePeriods: React.FC<MaternityLeaveProps> = props =>
         Bæta við tímabili
       </button>
       <Text marginBottom={40}>
-        Þú hefur valið <strong>{usedMessage}</strong> af <strong>{monthsAvailable}</strong> mánuðum.
+        Þú hefur valið <strong>{usedMessage}</strong> af <strong>{monthsAvailable}</strong> mánuðum
         mögulegum
       </Text>
       <Button

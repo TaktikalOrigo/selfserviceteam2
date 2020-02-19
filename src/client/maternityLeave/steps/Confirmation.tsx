@@ -135,7 +135,7 @@ export const MaternityLeaveConfirmation: React.FC<MaternityLeaveProps> = props =
         />
         <div />
       </div>
-      <Text marginBottom={48}>Við þurfum að vita hver tengiliður er hjá vinnuveitanda þínum?</Text>
+      <Text marginBottom={48}>Við þurfum að vita hver tengiliður er hjá vinnuveitanda þínum.</Text>
       <div className={s("row")}>
         <Textfield
           label="Nafn tengiliðs"
