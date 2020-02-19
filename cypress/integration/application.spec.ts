@@ -1,3 +1,5 @@
+export {};
+
 describe("application", () => {
   it("it successfully creates an application", () => {
     cy.resetDb();

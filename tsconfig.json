@@ -26,8 +26,9 @@
       "node",
       "@taktikal/error/global",
       "jest",
+      "cypress",
       "./custom",
-      "./index",
+      "./index"
     ],
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,

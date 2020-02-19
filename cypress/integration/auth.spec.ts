@@ -1,3 +1,5 @@
+export {};
+
 describe("auth", () => {
   it("it successfully authenticates the user", () => {
     Cypress.Cookies.preserveOnce("ssn");

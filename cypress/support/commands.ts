@@ -13,3 +13,5 @@ Cypress.Commands.add("assertTestIdExists", testId => {
 Cypress.Commands.add("resetDb", () => {
   return cy.request("POST", "/api/db/reset");
 });
+
+export {};
