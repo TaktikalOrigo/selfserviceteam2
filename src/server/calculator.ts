@@ -14,24 +14,24 @@ const taxLowerRangePercentage = 35.04;
 const taxLowerRangeUpToNumber = 336916;
 const taxMiddleRangePercentage = 37.19;
 
-export function calculate(data: MaternityData): MaternityResults {
+export function calculate(data: MaternityData, t: number = 1): MaternityResults {
   const paymentBeforeSub = getPaymentBeforeSub(data);
   const totalTax = getTotalTax(data, paymentBeforeSub);
   const personalTaxBreaks = getRatio(personalExemption, data.personalTaxBreakRate);
 
   return {
-    total: paymentBeforeSub,
-    pension: Math.floor(paymentBeforeSub * (data.pensionPercentage * 0.01)),
-    pentionOptional: getRatio(paymentBeforeSub, data.pensionOptionalPercentage),
-    taxToPay: totalTax - personalTaxBreaks,
-    totalTax: totalTax,
-    union: getRatio(paymentBeforeSub, data.unionPercentage),
+    total: Math.floor(paymentBeforeSub * t),
+    pension: Math.floor(paymentBeforeSub * (data.pensionPercentage * 0.01) * t),
+    pentionOptional: getRatio(paymentBeforeSub, data.pensionOptionalPercentage, t),
+    taxToPay: Math.max(0, Math.floor(totalTax * t) - personalTaxBreaks),
+    totalTax: Math.floor(totalTax * t),
+    union: getRatio(paymentBeforeSub, data.unionPercentage, t),
     userPersonalTaxBreaks: personalTaxBreaks,
   };
 }
 
-function getRatio(amount: number, percentage: number): number {
-  return Math.floor(amount * (percentage * 0.01));
+function getRatio(amount: number, percentage: number, t = 1): number {
+  return Math.floor(amount * (percentage * 0.01) * t);
 }
 
 function getTotalTax(data: MaternityData, paymentBeforeSub: number): number {

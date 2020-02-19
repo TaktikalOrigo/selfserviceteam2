@@ -9,6 +9,10 @@ const styles = ({ css }: StyleParams) => ({
     width: 960px;
     max-width: 100%;
 
+    &--wide {
+      width: 1280px;
+    }
+
     @media (min-width: ${cssBreakpoints.minXs}) {
       display: flex;
       flex-direction: column;
@@ -62,11 +66,11 @@ const styles = ({ css }: StyleParams) => ({
   `,
 });
 
-export const CenteredWrapper: React.FC = props => {
+export const CenteredWrapper: React.FC<{ wide?: boolean }> = props => {
   const s = useStylesheet(styles);
 
   return (
-    <div className={s("container")}>
+    <div className={s("container", { wide: !!props.wide })}>
       <div className={s("grow")}>
         <div>{props.children}</div>
       </div>

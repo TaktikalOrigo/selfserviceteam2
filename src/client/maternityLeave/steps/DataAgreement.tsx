@@ -81,12 +81,22 @@ export const MaternityLeaveDataAgreement: React.FC<MaternityLeaveProps> = props 
         checked={checked}
         onChange={() => setChecked(!checked)}
       />
+      {props.fields.applications.length > 0 && (
+        <Button
+          inline
+          onClick={() => !pending && props.prevStep()}
+          marginRight={16}
+          marginBottom={16}
+        >
+          Til baka
+        </Button>
+      )}
       <Button
+        inline
         primary
         onClick={onSubmit}
         disabled={!checked}
         loading={pending}
-        marginTop={24}
         marginBottom={24}
       >
         Áfram
