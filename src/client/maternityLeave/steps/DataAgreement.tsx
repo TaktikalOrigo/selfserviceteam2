@@ -33,9 +33,9 @@ export const MaternityLeaveDataAgreement: React.FC<MaternityLeaveProps> = props 
       );
 
       if (status === 404) {
-        setErrorMessage("Tókst ekki að sækja gögn");
         setPending(false);
-        return {};
+        props.nextStep();
+        return;
       }
 
       const {
