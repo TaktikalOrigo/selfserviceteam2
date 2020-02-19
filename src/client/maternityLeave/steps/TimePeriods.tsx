@@ -175,8 +175,8 @@ export const MaternityLeaveTimePeriods: React.FC<MaternityLeaveProps> = props =>
   const barT = Math.min(
     1,
     daysUsed /
-      ((MONTHS_OF_MATERNITY_LEAVE_PER_PARENT * 2 + MONTHS_OF_SHARED_MATERNITY_LEAVE) *
-        DAYS_PER_MONTH),
+    ((MONTHS_OF_MATERNITY_LEAVE_PER_PARENT * 2 + MONTHS_OF_SHARED_MATERNITY_LEAVE) *
+      DAYS_PER_MONTH),
   );
 
   const isMobile = useBreakpoint(maxXs);
@@ -285,7 +285,7 @@ export const MaternityLeaveTimePeriods: React.FC<MaternityLeaveProps> = props =>
                   />
                 </div>
               </div>
-              <button onClick={() => removeTimePeriodAtIndex(i)} className={s("removeTimePeriod")}>
+              <button title="Eyða tímabili" onClick={() => removeTimePeriodAtIndex(i)} className={s("removeTimePeriod")}>
                 <TrashIcon />
               </button>
             </div>
@@ -305,7 +305,7 @@ export const MaternityLeaveTimePeriods: React.FC<MaternityLeaveProps> = props =>
         Bæta við tímabili
       </button>
       <Text marginBottom={40}>
-        Þú hefur valið <strong>{usedMessage}</strong> af <strong>{monthsAvailable}</strong> mánuðum
+        Þú hefur valið <strong>{usedMessage}</strong> af <strong>{monthsAvailable} mánuðum </strong>
         mögulegum
       </Text>
       <Button inline onClick={() => props.prevStep()} marginRight={16} marginBottom={16}>

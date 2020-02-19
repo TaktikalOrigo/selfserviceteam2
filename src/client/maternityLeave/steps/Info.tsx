@@ -73,7 +73,7 @@ export const MaternityLeaveInfo: React.FC<MaternityLeaveProps> = props => {
         <form onSubmit={onSubmit}>
           <Title marginBottom={16}>Nokkur atriði sem við þurfum að fá á hreint...</Title>
           <Text maxWidth={680} marginBottom={40}>
-            Til að útreikningar séu sem nákvæmastir þurfa eftirfarandi upplúsingar að vera fyrir
+            Til að útreikningar séu sem nákvæmastir þurfa eftirfarandi upplýsingar að vera fyrir
             hendi.
           </Text>
 
