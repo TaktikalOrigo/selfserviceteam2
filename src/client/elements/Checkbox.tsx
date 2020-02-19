@@ -4,6 +4,7 @@ import styles from "./Checkbox.styles";
 
 interface Props extends React.HTMLProps<HTMLInputElement> {
   label: string;
+  testId?: string;
 }
 
 const Checkbox: React.FC<Props> = props => {
@@ -23,7 +24,7 @@ const Checkbox: React.FC<Props> = props => {
   const isChecked = typeof props.checked === "boolean" ? props.checked : checked;
 
   return (
-    <label className={s("label")} htmlFor="hidden-checkbox">
+    <label className={s("label")} htmlFor="hidden-checkbox" data-testid={props.testId}>
       <div className={s("container")}>
         <input
           {...rest}

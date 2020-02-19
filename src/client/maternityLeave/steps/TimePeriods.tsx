@@ -316,6 +316,7 @@ export const MaternityLeaveTimePeriods: React.FC<MaternityLeaveProps> = props =>
         disabled={usageIsAboveMaximum || isAnyTimePeriodIncomplete || usageIsEmpty}
         primary
         onClick={onSubmit}
+        data-testid="timePeriods__button"
       >
         Áfram
       </Button>
