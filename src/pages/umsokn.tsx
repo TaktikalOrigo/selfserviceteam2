@@ -87,7 +87,7 @@ export default class Umsokn extends React.Component<{}, State> {
 
             jobPercentage: 100,
             otherSalary: 0,
-            pensionPercentage: 0,
+            pensionPercentage: 4,
             personalTaxBreakRate: 100,
             salary: 0,
             unionPercentage: 2.55,
