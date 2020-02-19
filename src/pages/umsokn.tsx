@@ -83,6 +83,7 @@ export default class Umsokn extends React.Component<{}, State> {
             bankNumber: "",
 
             estimationResult: null!,
+            paymentPlan: [],
 
             jobPercentage: 100,
             otherSalary: 0,

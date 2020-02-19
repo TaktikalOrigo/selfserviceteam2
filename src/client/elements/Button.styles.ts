@@ -36,7 +36,7 @@ export default ({ css, keyframes }: StyleParams) => {
       padding: 0;
       position: relative;
       background-color: transparent;
-      border: none;
+      border: 1px solid ${cssVariables.colorPrimary};
       font-weight: 600;
       font-size: 16px;
       line-height: 1;
@@ -44,6 +44,7 @@ export default ({ css, keyframes }: StyleParams) => {
       max-width: 100%;
       cursor: pointer;
       transition: box-shadow 0.3s, background-color 0.3s, border-color 0.3s, opacity 0.3s;
+      overflow: hidden;
 
       &__container {
         position: relative;
@@ -52,7 +53,11 @@ export default ({ css, keyframes }: StyleParams) => {
       ${cssMixins.focusableOuter()};
 
       &:hover {
-        background-color: ${cssVariables.colorOffWhite};
+        box-shadow: 0 6px 10px rgba(0, 70, 185, 0.1);
+      }
+
+      &:active {
+        box-shadow: 0 6px 10px rgba(0, 70, 185, 0.1);
       }
 
       svg {
@@ -68,10 +73,8 @@ export default ({ css, keyframes }: StyleParams) => {
       &--primary {
         background-color: ${cssVariables.colorPrimary};
         color: white;
-        transition: box-shadow 0.3s, background-color 0.3s, border-color 0.3s, opacity 0.3s;
 
         &:hover {
-          background-color: ${cssVariables.colorPrimary};
           box-shadow: 0 6px 10px rgba(0, 70, 185, 0.25);
         }
 

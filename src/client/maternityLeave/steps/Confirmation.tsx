@@ -157,7 +157,15 @@ export const MaternityLeaveConfirmation: React.FC<MaternityLeaveProps> = props =
           required
         />
       </div>
-      <Button primary onClick={onSubmit} loading={pending} marginBottom={24}>
+      <Button
+        inline
+        onClick={() => !pending && props.prevStep()}
+        marginRight={16}
+        marginBottom={16}
+      >
+        Til baka
+      </Button>
+      <Button inline primary onClick={onSubmit} loading={pending} marginBottom={24}>
         Staðfesta
       </Button>
       <ErrorMessage message={errorMessage} />
