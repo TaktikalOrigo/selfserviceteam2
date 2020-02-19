@@ -106,7 +106,7 @@ export const MaternityLeavePaymentPlan: React.FC<MaternityLeaveProps> = props =>
       >
         Til baka
       </Button>
-      <Button inline onClick={() => props.nextStep()} primary>
+      <Button inline onClick={() => props.nextStep()} primary data-testid="paymentPlan__button">
         Áfram
       </Button>
     </CenteredWrapper>

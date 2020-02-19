@@ -69,6 +69,7 @@ export const MaternityLeaveExistingApplications: React.FC<MaternityLeaveProps> =
           const date = new Date(application.createdAt);
           return (
             <button
+              data-application
               key={application.id}
               className={s("item")}
               onClick={() => {

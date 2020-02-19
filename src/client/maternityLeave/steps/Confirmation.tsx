@@ -165,7 +165,14 @@ export const MaternityLeaveConfirmation: React.FC<MaternityLeaveProps> = props =
       >
         Til baka
       </Button>
-      <Button inline primary onClick={onSubmit} loading={pending} marginBottom={24}>
+      <Button
+        inline
+        primary
+        onClick={onSubmit}
+        loading={pending}
+        marginBottom={24}
+        data-testid="confirmation__button"
+      >
         Staðfesta
       </Button>
       <ErrorMessage message={errorMessage} />

@@ -11,7 +11,8 @@
     "start": "cross-env NODE_ENV=production ts-node -T -O '{\\\"module\\\":\\\"commonjs\\\"}' -r tsconfig-paths/register server",
     "sync-database-dangerously": "cross-env NODE_ENV=development ts-node -T -O '{\\\"module\\\":\\\"commonjs\\\"}' -r tsconfig-paths/register src/server/repository/syncDatabase",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "cy:open": "cypress open"
   },
   "dependencies": {
     "@taktikal/env": "^1.0.1",
@@ -48,6 +49,7 @@
     "yup": "^0.27.0"
   },
   "devDependencies": {
+    "@cypress/webpack-preprocessor": "^4.1.1",
     "@taktikal/eslint-config": "^1.0.4",
     "@types/body-parser": "^1.17.0",
     "@types/compression": "0.0.36",
@@ -64,9 +66,11 @@
     "@types/react-transition-group": "^2.0.12",
     "@types/uuid": "^3.4.4",
     "@types/yup": "^0.26.24",
+    "cypress": "^4.0.2",
     "jest": "^24.9.0",
     "nodemon": "^1.18.10",
-    "ts-jest": "^24.2.0"
+    "ts-jest": "^24.2.0",
+    "ts-loader": "^6.2.1"
   },
   "eslint": {
     "extends": "@taktikal"

@@ -80,6 +80,7 @@ export const MaternityLeaveDataAgreement: React.FC<MaternityLeaveProps> = props 
         label="Ég samþykki að sótt séu gögn til Heilsuveru, Ríkisskattstjóra, Þjóðskrá og Fjársýslunnar"
         checked={checked}
         onChange={() => setChecked(!checked)}
+        testId="dataAgreement__checkbox"
       />
       {props.fields.applications.length > 0 && (
         <Button
@@ -98,6 +99,7 @@ export const MaternityLeaveDataAgreement: React.FC<MaternityLeaveProps> = props 
         disabled={!checked}
         loading={pending}
         marginBottom={24}
+        data-testid="dataAgreement__button"
       >
         Áfram
       </Button>
