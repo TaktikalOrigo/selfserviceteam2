@@ -10,7 +10,7 @@ interface Props extends React.HTMLProps<HTMLInputElement> {
 const Checkbox: React.FC<Props> = props => {
   const s = useStylesheet(styles);
 
-  const { label, ...rest } = props;
+  const { label, testId, ...rest } = props;
   const [checked, setChecked] = useState(props.defaultChecked || false);
 
   const onChange = (e: React.FormEvent<HTMLInputElement>) => {
@@ -24,7 +24,7 @@ const Checkbox: React.FC<Props> = props => {
   const isChecked = typeof props.checked === "boolean" ? props.checked : checked;
 
   return (
-    <label className={s("label")} htmlFor="hidden-checkbox" data-testid={props.testId}>
+    <label className={s("label")} htmlFor="hidden-checkbox" data-testid={testId}>
       <div className={s("container")}>
         <input
           {...rest}
