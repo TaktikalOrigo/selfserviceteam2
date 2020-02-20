@@ -224,8 +224,6 @@ export const MaternityLeaveTimePeriods: React.FC<MaternityLeaveProps> = props =>
         </div>
       </div>
       {timePeriods.map((period, i) => {
-        const hasBothDates = period.startDate && period.endDate;
-        const daysInRange = getDaysInRange(period);
         return (
           <div
             key={i}
