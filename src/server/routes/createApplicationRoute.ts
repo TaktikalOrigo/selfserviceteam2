@@ -36,7 +36,7 @@ export const handleCreateApplication: Handler = async (req, res) => {
 
     await getRepository(Person).save(person);
 
-    res.sendStatus(201);
+    res.status(201).json({ id: application.id });
   } catch (e) {
     const [err] = handleError(e);
     err.pipe(res);

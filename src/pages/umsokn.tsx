@@ -11,22 +11,22 @@ import { RequestContext, PersonFields } from "~/types";
 import { getPublicEnv } from "~/common/util/env";
 import { Header } from "~/client/components/header/Header";
 
+type Props = Partial<MaternityLeaveFields> & { applicationId?: string };
+
 interface State {
   name: string;
   ssn: string;
 }
 
-export default class Umsokn extends React.Component<{}, State> {
+export default class Umsokn extends React.Component<Props, State> {
   public readonly state: State = {
     name: "",
     ssn: "",
   };
 
-  public static async getInitialProps({
-    req,
-  }: RequestContext): Promise<Partial<MaternityLeaveFields>> {
+  public static async getInitialProps({ req, query }: RequestContext): Promise<Props> {
     const ssnCookieSearch = "ssn=";
-    const ssnCookieIndex = (req.headers.cookie || "").indexOf(ssnCookieSearch);
+    const ssnCookieIndex = req ? (req.headers.cookie || "").indexOf(ssnCookieSearch) : -1;
 
     if (ssnCookieIndex === -1) {
       return {};
@@ -50,6 +50,7 @@ export default class Umsokn extends React.Component<{}, State> {
         name: data.name,
         ssn: data.ssn,
         applications: data.applications,
+        applicationId: query.id as string,
       };
     } catch (e) {
       handleError(e);
@@ -68,13 +69,22 @@ export default class Umsokn extends React.Component<{}, State> {
   }
 
   public render() {
+    const { applicationId, ...rest } = this.props;
+
+    const applicationIndex =
+      rest.applications && applicationId
+        ? rest.applications.map(x => x.id.toString()).indexOf(applicationId)
+        : -1;
+
+    console.log(this.props, { applicationIndex });
+
     return (
       <>
         <Header isLoggedIn={!!this.state.name} name={this.state.name} ssn={this.state.ssn} />
         <StepManager
           initialFields={{
             applications: [],
-            applicationIndex: -1,
+            applicationIndex,
 
             ssn: "",
             name: "",
@@ -100,11 +110,13 @@ export default class Umsokn extends React.Component<{}, State> {
             employerContactName: "",
             hasEmployeeAccepted: false,
             hasGovernmentAccepted: false,
-            ...this.props,
+
+            ...rest,
           }}
           layoutComponent={MaternityLeaveLayout}
           steps={maternityLeaveSteps}
           onStateChange={state => this.setState({ name: state.name, ssn: state.ssn })}
+          startAtStep={applicationIndex !== -1 ? "applicationOverview" : undefined}
         />
       </>
     );

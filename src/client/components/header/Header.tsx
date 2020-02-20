@@ -49,7 +49,7 @@ export const Header: React.FC<HeaderProps> = props => {
               className={s("logoutButton")}
               onClick={() => {
                 Cookie.remove("ssn");
-                (window.location as any) = window.location.href;
+                (window.location as any) = "/umsokn";
               }}
             >
               Útskráning

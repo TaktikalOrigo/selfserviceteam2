@@ -59,8 +59,17 @@ export interface StepReducerState<T> {
 export const createInitialStepReducerState = <T extends {}>(
   steps: Step<T>[],
   fields: T,
+  startAtStep?: string,
 ): StepReducerState<T> => {
   let stepIndex = 0;
+
+  if (startAtStep) {
+    const startAtStepIndex = steps.map(x => x.name).indexOf(startAtStep);
+
+    if (stepIndex !== -1) {
+      return { stepIndex: startAtStepIndex, fields };
+    }
+  }
 
   for (; stepIndex < steps.length; stepIndex++) {
     const skipFn = steps[stepIndex].skipStep;
@@ -100,6 +109,7 @@ interface OwnProps<T> {
   scrollContainerToY?: (y: number) => void;
   getContainerScrollY?: () => number;
   onStateChange?: (state: T) => void;
+  startAtStep?: string;
 }
 type Props<T> = OwnProps<T>;
 
@@ -138,7 +148,9 @@ export const StepManager = <T extends {}>(props: Props<T>) => {
     return () => window.removeEventListener("resize", setMinStepHeightToCurrentStep);
   }, []);
 
-  const stateRef = useRef(createInitialStepReducerState(props.steps, props.initialFields));
+  const stateRef = useRef(
+    createInitialStepReducerState(props.steps, props.initialFields, props.startAtStep),
+  );
   const [{ fields, stepIndex }, _setState] = useState(stateRef.current);
 
   const dispatch = (action: any) => {

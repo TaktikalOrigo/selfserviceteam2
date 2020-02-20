@@ -1,4 +1,5 @@
 import React from "react";
+import Router from "next/router";
 
 import { MaternityLeaveProps } from "~/client/maternityLeave/maternityLeaveSteps";
 import icelandicLocale from "date-fns/locale/is";
@@ -74,6 +75,7 @@ export const MaternityLeaveExistingApplications: React.FC<MaternityLeaveProps> =
               className={s("item")}
               onClick={() => {
                 props.setFields({ applicationIndex: i });
+                Router.replace(`/umsokn?id=${application.id}`);
                 props.goToStep("applicationOverview", { transitionDirection: "forward" });
               }}
             >

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Router from "next/router";
 import {
   MaternityLeaveProps,
   MaternityLeaveFields,
@@ -79,8 +80,12 @@ export const MaternityLeaveConfirmation: React.FC<MaternityLeaveProps> = props =
         salary: props.fields.salary,
         unionPercentage: props.fields.unionPercentage,
       };
-      await resolveAfter(750, Axios.post(`/api/person/${props.fields.ssn}/application`, body));
+      const { data: application } = await resolveAfter(
+        750,
+        Axios.post(`/api/person/${props.fields.ssn}/application`, body),
+      );
       setPending(false);
+      Router.replace(`/umsokn?id=${application.id}`);
       props.nextStep();
     } catch (e) {
       const [err] = handleError(e);
