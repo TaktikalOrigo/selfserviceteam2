@@ -12,7 +12,8 @@
     "sync-database-dangerously": "cross-env NODE_ENV=development ts-node -T -O '{\\\"module\\\":\\\"commonjs\\\"}' -r tsconfig-paths/register src/server/repository/syncDatabase",
     "test": "jest",
     "test:watch": "jest --watch",
-    "cy:open": "cypress open"
+    "cy:open": "cypress open",
+    "storybook": "start-storybook"
   },
   "dependencies": {
     "@taktikal/env": "^1.0.1",
@@ -49,7 +50,10 @@
     "yup": "^0.27.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.8.4",
     "@cypress/webpack-preprocessor": "^4.1.1",
+    "@storybook/addon-info": "^5.3.13",
+    "@storybook/react": "^5.3.13",
     "@taktikal/eslint-config": "^1.0.4",
     "@types/body-parser": "^1.17.0",
     "@types/compression": "0.0.36",
@@ -66,9 +70,12 @@
     "@types/react-transition-group": "^2.0.12",
     "@types/uuid": "^3.4.4",
     "@types/yup": "^0.26.24",
+    "babel-loader": "^8.0.6",
+    "babel-preset-react-app": "^9.1.1",
     "cypress": "^4.0.2",
     "jest": "^24.9.0",
     "nodemon": "^1.18.10",
+    "react-docgen-typescript-loader": "^3.6.0",
     "ts-jest": "^24.2.0",
     "ts-loader": "^6.2.1"
   },

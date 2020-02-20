@@ -21,6 +21,7 @@ export default ({ css }: StyleParams) => ({
     box-shadow: none;
     transition: background-color 0.3s, border-color 0.3s;
     -webkit-appearance: none;
+    box-sizing: border-box;
 
     &:focus {
       border-color: ${cssVariables.colorPrimary};

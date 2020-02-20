@@ -31,6 +31,7 @@ export default ({ css }: StyleParams) => ({
     margin-bottom: 12px;
     min-height: 14px;
     color: ${cssVariables.colorBlack};
+    font-family: ${cssVariables.bodyFont};
   `,
 
   contentWrapper: css`
@@ -77,6 +78,7 @@ export default ({ css }: StyleParams) => ({
     padding-top: 0px;
     max-height: 0px;
     overflow: hidden;
+    font-family: ${cssVariables.bodyFont};
 
     &--error {
       color: ${cssVariables.colorError};
