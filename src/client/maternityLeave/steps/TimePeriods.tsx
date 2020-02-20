@@ -175,8 +175,8 @@ export const MaternityLeaveTimePeriods: React.FC<MaternityLeaveProps> = props =>
   const barT = Math.min(
     1,
     daysUsed /
-    ((MONTHS_OF_MATERNITY_LEAVE_PER_PARENT * 2 + MONTHS_OF_SHARED_MATERNITY_LEAVE) *
-      DAYS_PER_MONTH),
+      ((MONTHS_OF_MATERNITY_LEAVE_PER_PARENT * 2 + MONTHS_OF_SHARED_MATERNITY_LEAVE) *
+        DAYS_PER_MONTH),
   );
 
   const isMobile = useBreakpoint(maxXs);
@@ -285,15 +285,14 @@ export const MaternityLeaveTimePeriods: React.FC<MaternityLeaveProps> = props =>
                   />
                 </div>
               </div>
-              <button title="Eyða tímabili" onClick={() => removeTimePeriodAtIndex(i)} className={s("removeTimePeriod")}>
+              <button
+                title="Eyða tímabili"
+                onClick={() => removeTimePeriodAtIndex(i)}
+                className={s("removeTimePeriod")}
+              >
                 <TrashIcon />
               </button>
             </div>
-            {hasBothDates && daysInRange < 14 && (
-              <ErrorMessage
-                message={`Tímabil verða að vera 14 dagar að lágmarki. Gefið tímabil er ${daysInRange} dagar.`}
-              />
-            )}
           </div>
         );
       })}
