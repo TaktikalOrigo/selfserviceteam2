@@ -15,5 +15,6 @@ COPY . .
 
 EXPOSE 8080
 RUN npm run tscheck
+RUN npm run build-storybook
 RUN npm run build
 CMD npm start

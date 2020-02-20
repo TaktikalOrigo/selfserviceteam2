@@ -26,6 +26,7 @@ const handle = (app && app.getRequestHandler())!;
   server.use(cookieParser());
   server.use(compression());
 
+  server.use("/storybook", express.static("public/storybook"));
   server.use("/public", express.static("public"));
   server.get("/favicon.ico", (_, res) => {
     res.sendFile(path.resolve(__dirname, "./public/static/meta/favicon.ico"));

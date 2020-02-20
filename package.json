@@ -13,7 +13,8 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "cy:open": "cypress open",
-    "storybook": "start-storybook"
+    "storybook": "start-storybook",
+    "build-storybook": "rm -rf ./public/storybook && build-storybook -c .storybook -o public/storybook"
   },
   "dependencies": {
     "@taktikal/env": "^1.0.1",
