@@ -1,3 +1,13 @@
+## Live project
+
+The project is live at https://selfserviceteam2.taktikal.is.
+
+
+## Storybook
+
+You can view the Storybook for this project at https://selfserviceteam2.taktikal.is/storybook.
+
+
 ## Development
 
 Install dependencies with `npm i`.
