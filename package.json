@@ -20,7 +20,7 @@
     "@taktikal/env": "^1.0.1",
     "@taktikal/error": "^4.0.3",
     "@taktikal/stylesheets": "^1.0.1",
-    "axios": "^0.18.1",
+    "axios": "^0.21.1",
     "babel-plugin-emotion": "^10.0.27",
     "bezier-easing": "^2.1.0",
     "body-parser": "^1.18.3",
